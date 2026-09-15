@@ -75,7 +75,7 @@
   .nav a.cta-mini:hover{transform:translateY(-1px); box-shadow:0 4px 14px rgba(57,255,136,0.25);}
 
   /* HERO */
-  .hero{position:relative; z-index:1; padding:56px 0 40px;}
+  .hero{position:relative; z-index:1; padding:64px 0 48px;}
   .hero .eyebrow-line{
     font-family:var(--mono); font-size:13px; color:var(--text-dim);
     margin-bottom:18px; display:flex; align-items:center; gap:8px;
@@ -101,9 +101,9 @@
   .terminal{
     background:#080B0A;
     border:1px solid var(--line);
-    border-radius:10px;
+    border-radius:12px;
     overflow:hidden;
-    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    box-shadow:0 24px 60px rgba(0,0,0,0.45);
     margin-bottom:8px;
   }
   .terminal-bar{
@@ -129,59 +129,66 @@
   .caret{display:inline-block; width:7px; height:15px; background:var(--green); vertical-align:middle; animation:blink 1s steps(1) infinite;}
 
   /* SECTION helpers */
-  section{position:relative; z-index:1; padding:56px 0;}
-  .section-head{margin-bottom:28px;}
+  section{position:relative; z-index:1; padding:64px 0;}
+  .section-head{margin-bottom:32px;}
   .section-head .tag{
-    font-family:var(--mono); font-size:12px; color:var(--green); margin-bottom:8px; display:block;
+    font-family:var(--mono); font-size:12px; color:var(--green); margin-bottom:10px; display:block;
   }
   .section-head h2{
-    font-size:clamp(22px,4vw,30px); font-weight:700; letter-spacing:-0.01em;
+    font-size:clamp(22px,4vw,30px); font-weight:700; letter-spacing:-0.01em; line-height:1.25;
   }
-  .section-head p{color:var(--text-dim); margin-top:8px; max-width:56ch;}
+  .section-head p{color:var(--text-dim); margin-top:10px; max-width:56ch; font-size:15px;}
 
-  hr.rule{border:none; border-top:1px solid var(--line);}
+  hr.rule{border:none; border-top:1px solid var(--line); margin:0;}
 
   /* PRICING as config-style rows */
   .price-list{
-    border:1px solid var(--line); border-radius:10px; overflow:hidden;
+    border:1px solid var(--line); border-radius:12px; overflow:hidden;
     background:var(--card);
   }
   .price-row{
     display:flex; align-items:center; justify-content:space-between; gap:16px;
-    padding:22px 24px;
+    padding:24px 26px;
     border-bottom:1px solid var(--line);
     position:relative;
   }
   .price-row:last-child{border-bottom:none;}
-  .price-row.best{background:linear-gradient(90deg, rgba(57,255,136,0.06), transparent 60%);}
-  .price-row .label{
-    font-family:var(--mono); font-size:13px; color:var(--text-dim); margin-bottom:5px;
+  .price-row.best{background:linear-gradient(90deg, rgba(57,255,136,0.07), transparent 65%);}
+  .price-row.best::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--green);
   }
-  .price-row .duration{font-size:19px; font-weight:600;}
+  .price-row .label{
+    font-family:var(--mono); font-size:12px; color:var(--text-dim); margin-bottom:6px;
+    text-transform:lowercase; letter-spacing:0.02em;
+  }
+  .price-row .duration{font-size:20px; font-weight:600; display:flex; align-items:center; flex-wrap:wrap; gap:8px;}
   .price-row .best-flag{
     font-family:var(--mono); font-size:11px; color:var(--yellow);
-    border:1px solid rgba(242,199,68,0.4); padding:2px 8px; border-radius:20px;
-    margin-left:10px;
+    border:1px solid rgba(242,199,68,0.4); padding:3px 9px; border-radius:20px;
   }
   .price-row .amount{
-    font-family:var(--mono); font-size:24px; font-weight:700; color:var(--green);
+    font-family:var(--mono); font-size:25px; font-weight:700; color:var(--green);
     white-space:nowrap;
   }
   .price-row .amount small{font-size:13px; color:var(--text-dim); font-weight:500; margin-left:4px;}
 
   /* OS support badges */
+  .os-groups{display:flex; flex-direction:column; gap:20px;}
+  .os-group-label{font-family:var(--mono); font-size:12px; color:var(--text-dim); margin-bottom:10px;}
   .os-grid{display:flex; flex-wrap:wrap; gap:10px;}
   .os-chip{
     display:flex; align-items:center; gap:8px;
     font-family:var(--mono); font-size:13px;
     background:var(--card); border:1px solid var(--line);
-    padding:10px 14px; border-radius:8px;
+    padding:11px 15px; border-radius:8px;
+    transition:border-color .15s ease;
   }
+  .os-chip:hover{border-color:var(--green-dim);}
   .os-chip .ok{color:var(--green); font-weight:700;}
 
   /* preview image card */
   .preview-card{
-    border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--card);
+    border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--card);
   }
   .preview-img-fallback{
     aspect-ratio:16/9;
@@ -193,10 +200,11 @@
   }
   .preview-img-fallback .icon{font-size:34px; color:var(--green);}
   .preview-caption{padding:16px 18px; font-size:14px; color:var(--text-dim); border-top:1px solid var(--line);}
+  .preview-img{width:100%; display:block; background:#0D1210;}
 
   /* Install command block */
   .code-block{
-    background:#080B0A; border:1px solid var(--line); border-radius:10px; overflow:hidden;
+    background:#080B0A; border:1px solid var(--line); border-radius:12px; overflow:hidden;
   }
   .code-block-bar{
     display:flex; align-items:center; justify-content:space-between;
@@ -221,15 +229,15 @@
   }
 
   /* steps */
-  .steps{display:flex; flex-direction:column; gap:0; margin-top:8px;}
+  .steps{display:flex; flex-direction:column; gap:0; margin-top:4px; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--card);}
   .step{
-    display:flex; gap:16px; padding:18px 0; border-bottom:1px solid var(--line);
+    display:flex; gap:16px; padding:20px 22px; border-bottom:1px solid var(--line);
   }
   .step:last-child{border-bottom:none;}
   .step .n{
-    font-family:var(--mono); color:var(--green); font-weight:700; font-size:14px; min-width:22px;
+    font-family:var(--mono); color:var(--green); font-weight:700; font-size:14px; min-width:24px; padding-top:1px;
   }
-  .step .t{font-weight:600; margin-bottom:3px;}
+  .step .t{font-weight:600; margin-bottom:4px; font-size:15px;}
   .step .d{color:var(--text-dim); font-size:14px;}
 
   /* FAQ */
@@ -248,11 +256,11 @@
 
   /* contact */
   .contact-card{
-    background:var(--card); border:1px solid var(--line); border-radius:10px;
-    padding:28px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:30px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
   }
-  .contact-card .who{font-family:var(--mono); font-size:13px; color:var(--text-dim); margin-bottom:6px;}
-  .contact-card .num{font-size:22px; font-weight:700; letter-spacing:0.01em;}
+  .contact-card .who{font-family:var(--mono); font-size:12px; color:var(--text-dim); margin-bottom:7px;}
+  .contact-card .num{font-size:23px; font-weight:700; letter-spacing:0.01em; font-family:var(--mono);}
   .wa-btn{
     font-family:var(--mono); font-weight:700; font-size:14px;
     background:var(--green); color:#06120B; padding:13px 22px; border-radius:8px;
@@ -351,15 +359,25 @@
       <h2>OS yang didukung</h2>
       <p>Autoscript sudah diuji jalan mulus di distro berikut.</p>
     </div>
-    <div class="os-grid">
-      <div class="os-chip"><span class="ok">✓</span> Debian 10</div>
-      <div class="os-chip"><span class="ok">✓</span> Debian 11</div>
-      <div class="os-chip"><span class="ok">✓</span> Debian 12</div>
-      <div class="os-chip"><span class="ok">✓</span> Debian 13</div>
-      <div class="os-chip"><span class="ok">✓</span> Ubuntu 20</div>
-      <div class="os-chip"><span class="ok">✓</span> Ubuntu 22</div>
-      <div class="os-chip"><span class="ok">✓</span> Ubuntu 24</div>
-      <div class="os-chip"><span class="ok">✓</span> Ubuntu 25</div>
+    <div class="os-groups">
+      <div>
+        <div class="os-group-label">debian</div>
+        <div class="os-grid">
+          <div class="os-chip"><span class="ok">✓</span> Debian 10</div>
+          <div class="os-chip"><span class="ok">✓</span> Debian 11</div>
+          <div class="os-chip"><span class="ok">✓</span> Debian 12</div>
+          <div class="os-chip"><span class="ok">✓</span> Debian 13</div>
+        </div>
+      </div>
+      <div>
+        <div class="os-group-label">ubuntu</div>
+        <div class="os-grid">
+          <div class="os-chip"><span class="ok">✓</span> Ubuntu 20</div>
+          <div class="os-chip"><span class="ok">✓</span> Ubuntu 22</div>
+          <div class="os-chip"><span class="ok">✓</span> Ubuntu 24</div>
+          <div class="os-chip"><span class="ok">✓</span> Ubuntu 25</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -372,9 +390,15 @@
       <p>Pratinjau menu instalasi setelah script dijalankan di VPS.</p>
     </div>
     <div class="preview-card">
-      <div class="preview-img-fallback">
+      <img
+        class="preview-img"
+        src="https://raw.githubusercontent.com/joytun21/joy/main/image/onta.jpg"
+        alt="Tampilan menu autoscript Zoy Tunneling"
+        onerror="this.style.display='none'; document.getElementById('previewFallback').style.display='flex';"
+      >
+      <div class="preview-img-fallback" id="previewFallback" style="display:none;">
         <div class="icon">▣</div>
-        <div>Gambar preview autoscript belum bisa dimuat otomatis dari link yang diberikan.<br>Silakan upload gambar aslinya untuk ditampilkan di sini.</div>
+        <div>Gambar tidak berhasil dimuat dari sumbernya. Coba muat ulang halaman, atau pastikan gambar bersifat publik.</div>
       </div>
       <div class="preview-caption">Menu instalasi Zoy Tunneling — tampil otomatis setelah proses instalasi selesai.</div>
     </div>
