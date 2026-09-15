@@ -3,801 +3,529 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zoy Digital — Journey Ngoding dari Nol Sampai Jago</title>
+<title>Zoy Tunneling — Sewa Autoscript Install VPS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #EAF4FF;
-    --white: #FFFFFF;
-    --blue: #3B82F6;
-    --blue-dark: #1D4ED8;
-    --blue-light: #93C5FD;
-    --ink: #0F2A47;
-    --muted: #56708F;
-    --pink: #FF5DA2;
-    --yellow: #FFC93C;
-    --green: #22C55E;
-    --line: #D6E9FF;
+    --bg:#0A0E0D;
+    --bg-raised:#121715;
+    --card:#161B19;
+    --line:#232D29;
+    --green:#39FF88;
+    --green-dim:#1F7A48;
+    --yellow:#F2C744;
+    --text:#E8EDEA;
+    --text-dim:#8FA39B;
+    --mono:'JetBrains Mono', monospace;
+    --sans:'Inter', sans-serif;
   }
-
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-
   body{
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    overflow-x: hidden;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
-
-  h1,h2,h3,.logo,.big-num{
-    font-family: 'Baloo 2', sans-serif;
-  }
-
-  .mono{ font-family: 'JetBrains Mono', monospace; }
-
-  a{ text-decoration:none; color:inherit; }
-  img{ max-width:100%; display:block; }
-
   @media (prefers-reduced-motion: reduce){
-    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
   }
 
-  /* ===== floating blobs & emoji ===== */
-  .bg-blob{
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(60px);
-    z-index: 0;
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  .blob1{ width: 420px; height:420px; background: var(--blue-light); top: -120px; left: -100px; animation: drift 14s ease-in-out infinite; }
-  .blob2{ width: 360px; height:360px; background: #FFD9EC; bottom: -100px; right: -80px; animation: drift 16s ease-in-out infinite reverse; }
-  .blob3{ width: 260px; height:260px; background: #FFF3C4; top: 40%; right: 10%; animation: drift 12s ease-in-out infinite; }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
 
-  @keyframes drift{
-    0%,100%{ transform: translate(0,0) scale(1); }
-    50%{ transform: translate(30px,-40px) scale(1.08); }
-  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
 
-  .floaty{
-    position: absolute;
-    font-size: 1.8rem;
-    animation: floaty 5s ease-in-out infinite;
-    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.08));
-  }
-  @keyframes floaty{
-    0%,100%{ transform: translateY(0) rotate(-4deg); }
-    50%{ transform: translateY(-22px) rotate(4deg); }
+  /* subtle scanline / grid texture on bg */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(rgba(57,255,136,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(57,255,136,0.025) 1px, transparent 1px);
+    background-size: 42px 42px;
+    pointer-events:none;
+    z-index:0;
   }
 
-  /* ===== Nav ===== */
   header{
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    padding: 16px 6vw;
-    background: rgba(234, 244, 255, 0.8);
-    backdrop-filter: blur(10px);
-    border-bottom: 2px solid var(--line);
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,14,13,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px; max-width:920px; margin:0 auto;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-weight:700; font-size:17px; letter-spacing:-0.02em;
+  }
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--green); box-shadow:0 0 10px var(--green);}
+  .nav a.cta-mini{
+    font-family:var(--mono); font-size:13px; font-weight:600;
+    background:var(--green); color:#06120B;
+    padding:9px 16px; border-radius:6px; text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .nav a.cta-mini:hover{transform:translateY(-1px); box-shadow:0 4px 14px rgba(57,255,136,0.25);}
+
+  /* HERO */
+  .hero{position:relative; z-index:1; padding:56px 0 40px;}
+  .hero .eyebrow-line{
+    font-family:var(--mono); font-size:13px; color:var(--text-dim);
+    margin-bottom:18px; display:flex; align-items:center; gap:8px;
+  }
+  .hero .eyebrow-line .blink{
+    width:7px;height:14px;background:var(--green); display:inline-block;
+    animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  h1{
+    font-family:var(--sans); font-weight:700;
+    font-size:clamp(32px, 6vw, 50px);
+    line-height:1.12; letter-spacing:-0.02em;
+    max-width:14ch;
+    margin-bottom:18px;
+  }
+  h1 span{color:var(--green);}
+  .hero p.lede{
+    font-size:17px; color:var(--text-dim); max-width:52ch; margin-bottom:32px;
   }
 
-  .logo{
-    font-weight: 800;
-    font-size: 1.5rem;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    color: var(--blue-dark);
+  .terminal{
+    background:#080B0A;
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    margin-bottom:8px;
   }
-  .logo .emoji{ font-size: 1.4rem; }
+  .terminal-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:11px 14px;
+    background:var(--bg-raised);
+    border-bottom:1px solid var(--line);
+  }
+  .terminal-bar span{width:11px;height:11px;border-radius:50%;}
+  .terminal-bar span:nth-child(1){background:#FF5F57;}
+  .terminal-bar span:nth-child(2){background:#FEBC2E;}
+  .terminal-bar span:nth-child(3){background:#28C840;}
+  .terminal-bar .path{
+    margin-left:8px; font-family:var(--mono); font-size:12px; color:var(--text-dim);
+  }
+  .terminal-body{
+    padding:20px; font-family:var(--mono); font-size:13px; line-height:1.8;
+    color:#B9F5CF; white-space:pre-wrap; word-break:break-all;
+    min-height:150px;
+  }
+  .terminal-body .prompt{color:var(--green); font-weight:700;}
+  .terminal-body .comment{color:var(--text-dim);}
+  .caret{display:inline-block; width:7px; height:15px; background:var(--green); vertical-align:middle; animation:blink 1s steps(1) infinite;}
 
-  nav ul{ list-style:none; display:flex; gap: 30px; }
-  nav a{ font-size: 0.92rem; font-weight: 700; color: var(--ink); }
-  nav a:hover{ color: var(--blue-dark); }
-
-  .nav-cta{
-    padding: 11px 24px;
-    background: var(--blue);
-    color: white;
-    border-radius: 999px;
-    font-weight: 800;
-    font-size: 0.9rem;
-    box-shadow: 0 6px 0 var(--blue-dark);
-    transition: transform 0.15s ease;
-  }
-  .nav-cta:active{ transform: translateY(4px); box-shadow: 0 2px 0 var(--blue-dark); }
-
-  /* ===== Hero ===== */
-  .hero{
-    position: relative;
-    min-height: 100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding: 120px 6vw 60px;
-    z-index: 1;
-  }
-
-  .hero-inner{
-    display:grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 40px;
-    align-items:center;
-    max-width: 1180px;
-    width:100%;
-  }
-
-  .badge-hot{
-    display:inline-flex;
-    align-items:center;
-    gap: 8px;
-    background: white;
-    border: 2px solid var(--pink);
-    color: var(--pink);
-    font-weight: 800;
-    font-size: 0.85rem;
-    padding: 8px 16px;
-    border-radius: 999px;
-    margin-bottom: 22px;
-    animation: shake 3s ease-in-out infinite;
-  }
-  @keyframes shake{
-    0%,90%,100%{ transform: rotate(0); }
-    92%{ transform: rotate(-3deg); }
-    94%{ transform: rotate(3deg); }
-    96%{ transform: rotate(-2deg); }
-    98%{ transform: rotate(2deg); }
-  }
-
-  .hero h1{
-    font-size: clamp(2.2rem, 5.2vw, 3.6rem);
-    font-weight: 800;
-    line-height: 1.12;
-    color: var(--ink);
-  }
-
-  .hero h1 .hl{
-    color: var(--blue-dark);
-    position: relative;
-    display:inline-block;
-  }
-  .hero h1 .hl::after{
-    content:'';
-    position:absolute;
-    left:0; bottom:2px;
-    width:100%; height:12px;
-    background: var(--yellow);
-    z-index:-1;
-    border-radius: 6px;
-    opacity:0.7;
-  }
-
-  .hero p{
-    margin-top: 20px;
-    font-size: 1.08rem;
-    color: var(--muted);
-    max-width: 480px;
-    line-height: 1.6;
-    font-weight: 500;
-  }
-
-  .hero-actions{
-    margin-top: 30px;
-    display:flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary{
-    padding: 16px 30px;
-    background: var(--blue);
-    color: white;
-    border-radius: 999px;
-    font-weight: 800;
-    font-size: 1rem;
-    box-shadow: 0 6px 0 var(--blue-dark);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-  }
-  .btn-primary:hover{ transform: translateY(-2px); }
-  .btn-primary:active{ transform: translateY(4px); box-shadow: 0 2px 0 var(--blue-dark); }
-
-  .btn-ghost{
-    padding: 16px 28px;
-    border: 2.5px solid var(--blue);
-    color: var(--blue-dark);
-    border-radius: 999px;
-    font-weight: 800;
-    font-size: 1rem;
-    background: white;
-  }
-  .btn-ghost:hover{ background: #EAF4FF; }
-
-  .social-proof{
-    margin-top: 34px;
-    display:flex;
-    align-items:center;
-    gap: 12px;
-  }
-  .avatars{ display:flex; }
-  .avatars span{
-    width: 34px; height:34px;
-    border-radius: 50%;
-    border: 2.5px solid white;
-    margin-left: -10px;
-    display:flex; align-items:center; justify-content:center;
-    font-size: 0.9rem;
-    font-weight:700;
-    color:white;
-  }
-  .avatars span:nth-child(1){ background: var(--pink); margin-left:0; }
-  .avatars span:nth-child(2){ background: var(--yellow); color: var(--ink); }
-  .avatars span:nth-child(3){ background: var(--green); }
-  .avatars span:nth-child(4){ background: var(--blue); }
-
-  .social-proof p{
-    margin:0;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--ink);
-  }
-  .social-proof p span{ color: var(--blue-dark); }
-
-  /* ===== Code editor mockup ===== */
-  .phone-wrap{
-    position: relative;
-    display:flex;
-    justify-content:center;
-  }
-
-  .code-window{
-    width: 100%;
-    max-width: 420px;
-    background: var(--ink);
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 30px 60px rgba(15,42,71,0.28);
-    animation: floaty2 5s ease-in-out infinite;
-  }
-  @keyframes floaty2{
-    0%,100%{ transform: translateY(0) rotate(-1deg); }
-    50%{ transform: translateY(-14px) rotate(1deg); }
-  }
-
-  .code-titlebar{
-    display:flex;
-    align-items:center;
-    gap: 8px;
-    padding: 12px 16px;
-    background: #0B1F38;
-  }
-  .code-titlebar .dot{ width:11px; height:11px; border-radius:50%; }
-  .dot.red{ background:#FF5F57; }
-  .dot.yellow{ background:#FEBC2E; }
-  .dot.green{ background:#28C840; }
-  .code-filename{
-    margin-left: 8px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.55);
-  }
-
-  .code-body{
-    padding: 20px 18px;
-    font-size: 0.82rem;
-    line-height: 1.9;
-    color: #E4ECFB;
-    white-space: pre;
-    overflow-x: auto;
-  }
-  .code-body .ln{
-    display:inline-block;
-    width: 20px;
-    color: #45577A;
-    user-select: none;
-  }
-  .tok-kw{ color: #FF7EDB; }
-  .tok-var{ color: #93C5FD; }
-  .tok-key{ color: #60A5FA; }
-  .tok-str{ color: #FFC93C; }
-  .tok-fn{ color: #4ADE80; }
-
-  .cursor-blink{
-    color: #60A5FA;
-    animation: blink 1s step-end infinite;
-  }
-  @keyframes blink{
-    0%,50%{ opacity:1; }
-    51%,100%{ opacity:0; }
-  }
-
-  .float-badge{
-    position: absolute;
-    background: white;
-    border-radius: 14px;
-    padding: 10px 14px;
-    box-shadow: 0 10px 24px rgba(15,42,71,0.15);
-    font-size: 0.78rem;
-    font-weight: 800;
-    display:flex;
-    align-items:center;
-    gap: 8px;
-    animation: floaty 4.5s ease-in-out infinite;
-  }
-  .float-badge.b1{ top: 10%; left: -8%; color: var(--pink); animation-delay: 0.3s; }
-  .float-badge.b2{ bottom: 14%; right: -10%; color: var(--green); animation-delay: 1s; }
-
-  /* ===== marquee ticker ===== */
-  .ticker{
-    background: var(--ink);
-    padding: 14px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative;
-    z-index: 1;
-  }
-  .ticker-track{
-    display:inline-flex;
-    gap: 50px;
-    animation: scroll-left 22s linear infinite;
-  }
-  .ticker-track span{
-    color: white;
-    font-weight: 700;
-    font-size: 0.95rem;
-    display:inline-flex;
-    align-items:center;
-    gap: 10px;
-  }
-  .ticker-track span b{ color: var(--yellow); }
-
-  @keyframes scroll-left{
-    from{ transform: translateX(0); }
-    to{ transform: translateX(-50%); }
-  }
-
-  /* ===== sections shared ===== */
-  section{ position: relative; z-index:1; padding: 90px 6vw; }
-
-  .section-head{ max-width: 640px; margin: 0 auto 50px; text-align:center; }
-  .section-tag{
-    display:inline-block;
-    background: var(--white);
-    border: 2px solid var(--blue-light);
-    color: var(--blue-dark);
-    font-weight: 800;
-    font-size: 0.8rem;
-    padding: 6px 16px;
-    border-radius: 999px;
-    margin-bottom: 16px;
+  /* SECTION helpers */
+  section{position:relative; z-index:1; padding:56px 0;}
+  .section-head{margin-bottom:28px;}
+  .section-head .tag{
+    font-family:var(--mono); font-size:12px; color:var(--green); margin-bottom:8px; display:block;
   }
   .section-head h2{
-    font-size: clamp(1.8rem, 3.6vw, 2.5rem);
-    font-weight: 800;
-    color: var(--ink);
-    line-height: 1.2;
+    font-size:clamp(22px,4vw,30px); font-weight:700; letter-spacing:-0.01em;
   }
-  .section-head p{
-    margin-top: 14px;
-    color: var(--muted);
-    font-weight: 500;
-    font-size: 1.02rem;
+  .section-head p{color:var(--text-dim); margin-top:8px; max-width:56ch;}
+
+  hr.rule{border:none; border-top:1px solid var(--line);}
+
+  /* PRICING as config-style rows */
+  .price-list{
+    border:1px solid var(--line); border-radius:10px; overflow:hidden;
+    background:var(--card);
+  }
+  .price-row{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:22px 24px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .price-row:last-child{border-bottom:none;}
+  .price-row.best{background:linear-gradient(90deg, rgba(57,255,136,0.06), transparent 60%);}
+  .price-row .label{
+    font-family:var(--mono); font-size:13px; color:var(--text-dim); margin-bottom:5px;
+  }
+  .price-row .duration{font-size:19px; font-weight:600;}
+  .price-row .best-flag{
+    font-family:var(--mono); font-size:11px; color:var(--yellow);
+    border:1px solid rgba(242,199,68,0.4); padding:2px 8px; border-radius:20px;
+    margin-left:10px;
+  }
+  .price-row .amount{
+    font-family:var(--mono); font-size:24px; font-weight:700; color:var(--green);
+    white-space:nowrap;
+  }
+  .price-row .amount small{font-size:13px; color:var(--text-dim); font-weight:500; margin-left:4px;}
+
+  /* OS support badges */
+  .os-grid{display:flex; flex-wrap:wrap; gap:10px;}
+  .os-chip{
+    display:flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:13px;
+    background:var(--card); border:1px solid var(--line);
+    padding:10px 14px; border-radius:8px;
+  }
+  .os-chip .ok{color:var(--green); font-weight:700;}
+
+  /* preview image card */
+  .preview-card{
+    border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--card);
+  }
+  .preview-img-fallback{
+    aspect-ratio:16/9;
+    background:
+      repeating-linear-gradient(135deg, rgba(57,255,136,0.06) 0 2px, transparent 2px 14px),
+      #0D1210;
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
+    color:var(--text-dim); font-family:var(--mono); font-size:13px; text-align:center; padding:24px;
+  }
+  .preview-img-fallback .icon{font-size:34px; color:var(--green);}
+  .preview-caption{padding:16px 18px; font-size:14px; color:var(--text-dim); border-top:1px solid var(--line);}
+
+  /* Install command block */
+  .code-block{
+    background:#080B0A; border:1px solid var(--line); border-radius:10px; overflow:hidden;
+  }
+  .code-block-bar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 14px; background:var(--bg-raised); border-bottom:1px solid var(--line);
+  }
+  .code-block-bar span{font-family:var(--mono); font-size:12px; color:var(--text-dim);}
+  .copy-btn{
+    font-family:var(--mono); font-size:12px; font-weight:600;
+    background:transparent; color:var(--green); border:1px solid var(--green-dim);
+    padding:6px 12px; border-radius:6px; cursor:pointer;
+    transition:background .15s ease, color .15s ease;
+  }
+  .copy-btn:hover{background:var(--green); color:#06120B;}
+  .copy-btn:focus-visible, .cta-mini:focus-visible, .wa-float:focus-visible{outline:2px solid var(--green); outline-offset:2px;}
+  pre.code{
+    padding:20px; font-family:var(--mono); font-size:12.5px; line-height:1.8;
+    color:#B9F5CF; overflow-x:auto; white-space:pre;
+  }
+  .note-box{
+    margin-top:14px; font-size:13px; color:var(--text-dim);
+    border-left:2px solid var(--green-dim); padding:10px 14px; background:rgba(57,255,136,0.03);
   }
 
-  .reveal{ opacity:0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.in{ opacity:1; transform:translateY(0); }
+  /* steps */
+  .steps{display:flex; flex-direction:column; gap:0; margin-top:8px;}
+  .step{
+    display:flex; gap:16px; padding:18px 0; border-bottom:1px solid var(--line);
+  }
+  .step:last-child{border-bottom:none;}
+  .step .n{
+    font-family:var(--mono); color:var(--green); font-weight:700; font-size:14px; min-width:22px;
+  }
+  .step .t{font-weight:600; margin-bottom:3px;}
+  .step .d{color:var(--text-dim); font-size:14px;}
 
-  /* ===== steps (cara mulai) ===== */
-  .steps-grid{
-    display:grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 24px;
-    max-width: 1080px;
-    margin: 0 auto;
+  /* FAQ */
+  details{
+    border-bottom:1px solid var(--line); padding:16px 0;
   }
-  .step-card{
-    background: white;
-    border-radius: 22px;
-    padding: 30px 26px;
-    border: 2px solid var(--line);
-    position: relative;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  details summary{
+    cursor:pointer; font-weight:600; list-style:none; display:flex; justify-content:space-between; align-items:center;
   }
-  .step-card:hover{
-    transform: translateY(-6px) rotate(-1deg);
-    box-shadow: 0 18px 34px rgba(59,130,246,0.18);
-    border-color: var(--blue-light);
+  details summary::-webkit-details-marker{display:none;}
+  details summary::after{
+    content:"+"; font-family:var(--mono); color:var(--green); font-size:18px; margin-left:12px;
   }
-  .step-badge{
-    width: 42px; height:42px;
-    border-radius: 50%;
-    background: var(--blue);
-    color: white;
-    font-weight: 800;
-    display:flex; align-items:center; justify-content:center;
-    margin-bottom: 18px;
-    font-family:'Baloo 2', sans-serif;
-    font-size: 1.1rem;
-  }
-  .step-card h3{ font-size: 1.1rem; margin-bottom: 8px; color: var(--ink); }
-  .step-card p{ font-size: 0.9rem; color: var(--muted); font-weight:500; line-height:1.6; }
+  details[open] summary::after{content:"–";}
+  details p{color:var(--text-dim); margin-top:10px; font-size:14px; max-width:60ch;}
 
-  /* ===== why us / features ===== */
-  .feature-grid{
-    display:grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 20px;
-    max-width: 1100px;
-    margin: 0 auto;
+  /* contact */
+  .contact-card{
+    background:var(--card); border:1px solid var(--line); border-radius:10px;
+    padding:28px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
   }
-  .feature-card{
-    background: white;
-    border-radius: 20px;
-    padding: 26px 22px;
-    text-align:center;
-    border: 2px solid var(--line);
-    transition: transform 0.25s ease;
+  .contact-card .who{font-family:var(--mono); font-size:13px; color:var(--text-dim); margin-bottom:6px;}
+  .contact-card .num{font-size:22px; font-weight:700; letter-spacing:0.01em;}
+  .wa-btn{
+    font-family:var(--mono); font-weight:700; font-size:14px;
+    background:var(--green); color:#06120B; padding:13px 22px; border-radius:8px;
+    text-decoration:none; white-space:nowrap;
+    transition:transform .15s ease, box-shadow .15s ease;
   }
-  .feature-card:hover{ transform: translateY(-6px); border-color: var(--pink); }
-  .feature-icon{ font-size: 2rem; margin-bottom: 12px; }
-  .feature-card h3{ font-size: 0.98rem; color: var(--ink); margin-bottom: 6px; }
-  .feature-card p{ font-size: 0.82rem; color: var(--muted); font-weight:500; line-height:1.5; }
+  .wa-btn:hover{transform:translateY(-1px); box-shadow:0 6px 18px rgba(57,255,136,0.25);}
 
-  /* ===== testimonial cards tiktok style ===== */
-  .testi-grid{
-    display:grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 22px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .testi-card{
-    background: white;
-    border-radius: 20px;
-    padding: 22px;
-    border: 2px solid var(--line);
-  }
-  .testi-top{ display:flex; align-items:center; gap:10px; margin-bottom:12px; }
-  .testi-avatar{
-    width: 38px; height:38px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-weight:800; color:white; font-size:1rem;
-  }
-  .testi-name{ font-size: 0.88rem; font-weight:800; color:var(--ink); }
-  .testi-handle{ font-size: 0.75rem; color: var(--muted); }
-  .testi-card p{ font-size: 0.88rem; color: var(--ink); line-height:1.55; font-weight:500; }
-  .testi-likes{ margin-top:14px; font-size:0.78rem; color: var(--pink); font-weight:700; display:flex; align-items:center; gap:6px; }
-
-  /* ===== stats counter ===== */
-  .stats-band{
-    background: linear-gradient(120deg, var(--blue-dark), var(--blue));
-    border-radius: 28px;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 50px 6vw;
-    display:grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 20px;
-    text-align:center;
-    position: relative;
-    overflow:hidden;
-  }
-  .stats-band .stat b{
-    font-size: clamp(1.8rem,4vw,2.6rem);
-    color: white;
-    display:block;
-    font-family:'Baloo 2', sans-serif;
-    font-weight: 800;
-  }
-  .stats-band .stat span{
-    color: rgba(255,255,255,0.85);
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
-
-  /* ===== CTA final ===== */
-  .cta-final{
-    text-align:center;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  .cta-final h2{
-    font-size: clamp(1.9rem,4vw,2.8rem);
-    font-weight: 800;
-    color: var(--ink);
-    line-height:1.2;
-  }
-  .cta-final h2 span{ color: var(--pink); }
-  .cta-final p{
-    margin-top: 16px;
-    color: var(--muted);
-    font-weight: 500;
-    font-size: 1.05rem;
-  }
-  .cta-final .btn-primary{
-    margin-top: 30px;
-    font-size: 1.1rem;
-    padding: 18px 40px;
-  }
-  .cta-note{
-    margin-top: 16px;
-    font-size: 0.82rem;
-    color: var(--muted);
-    font-weight: 600;
-  }
-
-  /* ===== footer ===== */
   footer{
-    padding: 50px 6vw 30px;
-    text-align:center;
-    position: relative;
-    z-index:1;
+    border-top:1px solid var(--line); padding:28px 0 100px;
+    font-size:13px; color:var(--text-dim); text-align:center;
+    font-family:var(--mono);
   }
-  footer .logo{ justify-content:center; margin-bottom: 12px; }
-  footer p{ color: var(--muted); font-size:0.85rem; font-weight:600; }
 
-  /* ===== responsive ===== */
-  @media (max-width: 900px){
-    .hero-inner{ grid-template-columns:1fr; text-align:center; }
-    .hero p{ margin-left:auto; margin-right:auto; }
-    .hero-actions{ justify-content:center; }
-    .social-proof{ justify-content:center; }
-    .phone-wrap{ margin-top: 20px; }
-    nav ul{ display:none; }
-    .steps-grid{ grid-template-columns:1fr; }
-    .feature-grid{ grid-template-columns: 1fr 1fr; }
-    .testi-grid{ grid-template-columns:1fr; }
-    .stats-band{ grid-template-columns: 1fr 1fr; }
+  .wa-float{
+    position:fixed; bottom:20px; right:20px; z-index:60;
+    background:var(--green); color:#06120B;
+    width:56px; height:56px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    font-size:26px;
   }
-  @media (max-width:520px){
-    .feature-grid{ grid-template-columns:1fr; }
-    header{ padding: 14px 5vw; }
+
+  @media (max-width:640px){
+    .price-row{flex-direction:column; align-items:flex-start; gap:8px;}
+    .price-row .amount{font-size:22px;}
+    .contact-card{flex-direction:column; align-items:flex-start;}
   }
 </style>
 </head>
 <body>
 
-<div class="bg-blob blob1"></div>
-<div class="bg-blob blob2"></div>
-<div class="bg-blob blob3"></div>
-
 <header>
-  <div class="logo"><span class="emoji">💙</span>zoy digital</div>
-  <nav>
-    <ul>
-      <li><a href="#stack">Tech Stack</a></li>
-      <li><a href="#project">Project</a></li>
-      <li><a href="#testimoni">Testimoni</a></li>
-    </ul>
-  </nav>
-  <a href="https://www.tiktok.com/@zoydigital" target="_blank" rel="noopener" class="nav-cta">Follow TikTok</a>
+  <div class="nav">
+    <div class="brand"><span class="dot"></span>zoy@tunneling</div>
+    <a class="cta-mini" href="#harga">Lihat harga</a>
+  </div>
 </header>
 
-<section class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="badge-hot">💻 Ngoding tiap hari, no skip!</div>
-      <h1>Belajar ngoding santai, jadi <span class="hl">developer beneran</span> pelan-pelan</h1>
-      <p>Zoy Digital itu journal harian belajar coding — dari yang error mulu sampai bisa bikin project sendiri. Ikutin progressnya, atau mulai bareng-bareng.</p>
-      <div class="hero-actions">
-        <a href="https://www.tiktok.com/@zoydigital" target="_blank" rel="noopener" class="btn-primary">🚀 Follow @zoydigital di TikTok</a>
-        <a href="#project" class="btn-ghost">Lihat Project</a>
+<main class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow-line"><span class="blink"></span> root@server:~# status — online, siap deploy</div>
+    <h1>Autoscript install VPS, <span>tinggal sewa per IP.</span></h1>
+    <p class="lede">Zoy Tunneling menyewakan akses autoscript untuk setup VPS tunneling dalam sekali jalan. Support Debian 10–13 dan Ubuntu 20, 22, 24, 25. Bayar per IP, bukan langganan ribet.</p>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span></span><span></span><span></span>
+        <span class="path">/root/zoy-tunneling</span>
       </div>
-      <div class="social-proof">
-        <div class="avatars">
-          <span>A</span><span>B</span><span>C</span><span>+</span>
-        </div>
-        <p><span>12.400+</span> orang belajar bareng di sini</p>
-      </div>
+      <div class="terminal-body" id="typedTerminal"></div>
     </div>
-    <div class="phone-wrap">
-      <div class="float-badge b1">✅ Build success</div>
-      <div class="code-window">
-        <div class="code-titlebar">
-          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-          <span class="code-filename">zoy.js</span>
-        </div>
-        <div class="code-body mono">
-<span class="ln">1</span><span class="tok-kw">const</span> <span class="tok-var">developer</span> = {
-<span class="ln">2</span>  <span class="tok-key">nama</span>: <span class="tok-str">"Zoy"</span>,
-<span class="ln">3</span>  <span class="tok-key">mulai</span>: <span class="tok-str">"dari nol"</span>,
-<span class="ln">4</span>  <span class="tok-key">stack</span>: [<span class="tok-str">"JS"</span>, <span class="tok-str">"Python"</span>, <span class="tok-str">"React"</span>],
-<span class="ln">5</span>  <span class="tok-key">mood</span>: <span class="tok-str">"semangat 🔥"</span>
-<span class="ln">6</span>};
-<span class="ln">7</span>
-<span class="ln">8</span><span class="tok-kw">function</span> <span class="tok-fn">belajarTiapHari</span>() {
-<span class="ln">9</span>  <span class="tok-kw">return</span> <span class="typing-text" id="typingLine"></span><span class="cursor-blink">▌</span>
-<span class="ln">10</span>}</div>
-      </div>
-      <div class="float-badge b2">🐛 → ✅ fixed!</div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<div class="ticker">
-  <div class="ticker-track">
-    <span>💻 <b>Rina</b> baru selesai bikin to-do app pertamanya</span>
-    <span>🐛 <b>Dimas</b> berhasil fix bug setelah 3 jam</span>
-    <span>🎉 <b>Putri</b> deploy project pertama ke internet</span>
-    <span>🚀 <b>Aldi</b> lulus tutorial React dasar</span>
-    <span>💻 <b>Rina</b> baru selesai bikin to-do app pertamanya</span>
-    <span>🐛 <b>Dimas</b> berhasil fix bug setelah 3 jam</span>
-    <span>🎉 <b>Putri</b> deploy project pertama ke internet</span>
-    <span>🚀 <b>Aldi</b> lulus tutorial React dasar</span>
-  </div>
-</div>
+  <hr class="rule">
 
-<section id="stack">
-  <div class="section-head reveal">
-    <span class="section-tag mono">&lt;/ Tech Stack&gt;</span>
-    <h2>Bahasa &amp; tools yang sering dipakai</h2>
-    <p>Nggak harus jago semua sekaligus — pelan-pelan aja, satu-satu.</p>
-  </div>
-  <div class="steps-grid">
-    <div class="step-card reveal">
-      <div class="step-badge">JS</div>
-      <h3>🟨 JavaScript</h3>
-      <p>Bahasa pertama yang dipelajari, dari alert() sampai bikin web interaktif.</p>
+  <section id="harga">
+    <div class="section-head">
+      <span class="tag">// pricing</span>
+      <h2>Harga sewa per IP</h2>
+      <p>Satu harga untuk satu IP VPS. Makin lama durasi, makin hemat per bulannya.</p>
     </div>
-    <div class="step-card reveal">
-      <div class="step-badge">PY</div>
-      <h3>🐍 Python</h3>
-      <p>Buat belajar logika dasar dan otomatisasi tugas-tugas kecil sehari-hari.</p>
-    </div>
-    <div class="step-card reveal">
-      <div class="step-badge">⚛️</div>
-      <h3>React</h3>
-      <p>Level lanjut buat bikin tampilan web yang interaktif dan modern.</p>
-    </div>
-  </div>
-</section>
 
-<section id="project">
-  <div class="section-head reveal">
-    <span class="section-tag">Kenapa Suka Ngoding</span>
-    <h2>Dari hobi iseng, jadi skill yang kepake</h2>
-  </div>
-  <div class="feature-grid">
-    <div class="feature-card reveal">
-      <div class="feature-icon">🧩</div>
-      <h3>Logic Solving</h3>
-      <p>Setiap bug yang berhasil di-fix rasanya kayak menang game susah.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">🎨</div>
-      <h3>Bikin dari Nol</h3>
-      <p>Ide di kepala bisa langsung diwujudkan jadi aplikasi atau website beneran.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">🌍</div>
-      <h3>Belajar Kapan Aja</h3>
-      <p>Modal laptop &amp; internet, semua materi bisa diakses gratis di mana pun.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">🤝</div>
-      <h3>Komunitas Seru</h3>
-      <p>Banyak temen belajar bareng, saling bantu waktu stuck di error yang sama.</p>
-    </div>
-  </div>
-</section>
-
-<section id="testimoni">
-  <div class="section-head reveal">
-    <span class="section-tag">Kata Followers</span>
-    <h2>Progress kecil yang bikin semangat</h2>
-  </div>
-  <div class="testi-grid">
-    <div class="testi-card reveal">
-      <div class="testi-top">
-        <div class="testi-avatar" style="background:#FF5DA2">R</div>
+    <div class="price-list">
+      <div class="price-row">
         <div>
-          <div class="testi-name">Rina Anjani</div>
-          <div class="testi-handle">@rina.codes</div>
+          <div class="label">durasi</div>
+          <div class="duration">1 bulan</div>
         </div>
+        <div class="amount">15.000<small>/IP</small></div>
       </div>
-      <p>Nonton video Zoy jadi ngerti kenapa kode gue error mulu. Sekarang udah berani bikin project sendiri!</p>
-      <div class="testi-likes">❤️ 2.4rb suka</div>
-    </div>
-    <div class="testi-card reveal">
-      <div class="testi-top">
-        <div class="testi-avatar" style="background:#3B82F6">D</div>
+      <div class="price-row">
         <div>
-          <div class="testi-name">Dimas Pratama</div>
-          <div class="testi-handle">@dimaspp</div>
+          <div class="label">durasi</div>
+          <div class="duration">2 bulan</div>
         </div>
+        <div class="amount">25.000<small>/IP</small></div>
       </div>
-      <p>Dulu mikir ngoding susah banget, ternyata kalau dijelasin santai kayak gini jadi seru diikutin.</p>
-      <div class="testi-likes">❤️ 1.8rb suka</div>
-    </div>
-    <div class="testi-card reveal">
-      <div class="testi-top">
-        <div class="testi-avatar" style="background:#22C55E">P</div>
+      <div class="price-row best">
         <div>
-          <div class="testi-name">Putri Wulandari</div>
-          <div class="testi-handle">@putriw</div>
+          <div class="label">durasi</div>
+          <div class="duration">3 bulan <span class="best-flag">paling hemat</span></div>
+        </div>
+        <div class="amount">35.000<small>/IP</small></div>
+      </div>
+    </div>
+    <div class="note-box">Harga berlaku per 1 alamat IP VPS. Untuk sewa banyak IP sekaligus, hubungi admin untuk penyesuaian.</div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <div class="section-head">
+      <span class="tag">// compatibility</span>
+      <h2>OS yang didukung</h2>
+      <p>Autoscript sudah diuji jalan mulus di distro berikut.</p>
+    </div>
+    <div class="os-grid">
+      <div class="os-chip"><span class="ok">✓</span> Debian 10</div>
+      <div class="os-chip"><span class="ok">✓</span> Debian 11</div>
+      <div class="os-chip"><span class="ok">✓</span> Debian 12</div>
+      <div class="os-chip"><span class="ok">✓</span> Debian 13</div>
+      <div class="os-chip"><span class="ok">✓</span> Ubuntu 20</div>
+      <div class="os-chip"><span class="ok">✓</span> Ubuntu 22</div>
+      <div class="os-chip"><span class="ok">✓</span> Ubuntu 24</div>
+      <div class="os-chip"><span class="ok">✓</span> Ubuntu 25</div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <div class="section-head">
+      <span class="tag">// preview</span>
+      <h2>Tampilan autoscript</h2>
+      <p>Pratinjau menu instalasi setelah script dijalankan di VPS.</p>
+    </div>
+    <div class="preview-card">
+      <div class="preview-img-fallback">
+        <div class="icon">▣</div>
+        <div>Gambar preview autoscript belum bisa dimuat otomatis dari link yang diberikan.<br>Silakan upload gambar aslinya untuk ditampilkan di sini.</div>
+      </div>
+      <div class="preview-caption">Menu instalasi Zoy Tunneling — tampil otomatis setelah proses instalasi selesai.</div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <div class="section-head">
+      <span class="tag">// cara pakai</span>
+      <h2>3 langkah install</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">01</div>
+        <div>
+          <div class="t">Hubungi admin & lakukan pembayaran</div>
+          <div class="d">Pilih durasi sewa (1/2/3 bulan), transfer sesuai harga, admin akan aktifkan akses IP kamu.</div>
         </div>
       </div>
-      <p>Suka banget sama kontennya, ngerasa nggak sendirian pas struggling belajar coding dari nol.</p>
-      <div class="testi-likes">❤️ 3.1rb suka</div>
+      <div class="step">
+        <div class="n">02</div>
+        <div>
+          <div class="t">Login ke VPS via SSH</div>
+          <div class="d">Masuk sebagai root ke VPS Debian atau Ubuntu yang sudah didukung.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="n">03</div>
+        <div>
+          <div class="t">Jalankan command install</div>
+          <div class="d">Copy paste command di bawah ini, tunggu proses selesai, dan VPS siap dipakai.</div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
 
-<section>
-  <div class="stats-band reveal">
-    <div class="stat"><b>12.4K+</b><span>Followers Aktif</span></div>
-    <div class="stat"><b>80+</b><span>Video Tutorial</span></div>
-    <div class="stat"><b>15</b><span>Project Dibangun</span></div>
-    <div class="stat"><b>4.9/5</b><span>Rating Konten</span></div>
-  </div>
-</section>
+    <div style="margin-top:24px;">
+      <div class="code-block">
+        <div class="code-block-bar">
+          <span>install.sh</span>
+          <button class="copy-btn" id="copyBtn">copy</button>
+        </div>
+        <pre class="code" id="installCode">sysctl -w net.ipv6.conf.all.disable_ipv6=1 &amp;&amp; \
+sysctl -w net.ipv6.conf.default.disable_ipv6=1 &amp;&amp; \
+apt update --allow-releaseinfo-change &amp;&amp; \
+apt upgrade -y &amp;&amp; \
+apt install -y curl wget unzip sudo gnupg lsb-release build-essential libcap-ng-dev libssl-dev libffi-dev python3 python3-pip &amp;&amp; \
+curl -fsSL -O https://raw.githubusercontent.com/joytun21/schaya/main/mahbub &amp;&amp; \
+chmod +x mahbub &amp;&amp; \
+./mahbub</pre>
+      </div>
+      <div class="note-box">Jalankan sebagai root pada VPS yang masih bersih (fresh install) untuk hasil terbaik. Pastikan akses IP kamu sudah aktif dari admin sebelum menjalankan script.</div>
+    </div>
+  </section>
 
-<section id="gabung">
-  <div class="cta-final reveal">
-    <h2>Yuk belajar ngoding bareng <span>Zoy</span></h2>
-    <p>Konten harian seputar coding, project, dan tips buat pemula. Follow biar nggak ketinggalan update.</p>
-    <a href="https://www.tiktok.com/@zoydigital" target="_blank" rel="noopener" class="btn-primary">🚀 Follow @zoydigital di TikTok</a>
-    <div class="cta-note">Sudah ditonton 12.400+ orang yang lagi belajar ngoding 🇮🇩</div>
-  </div>
-</section>
+  <hr class="rule">
+
+  <section>
+    <div class="section-head">
+      <span class="tag">// faq</span>
+      <h2>Pertanyaan umum</h2>
+    </div>
+
+    <details open>
+      <summary>Apakah harga berlaku untuk 1 IP atau bisa dipakai banyak server?</summary>
+      <p>Harga di atas berlaku per 1 IP VPS untuk masa aktif sesuai durasi yang dipilih. Kalau butuh banyak IP sekaligus, hubungi admin untuk harga paket.</p>
+    </details>
+    <details>
+      <summary>Bagaimana kalau OS VPS saya tidak ada di daftar?</summary>
+      <p>Autoscript ini dioptimalkan untuk Debian 10–13 dan Ubuntu 20/22/24/25. Untuk versi di luar itu, tanyakan dulu ke admin sebelum instalasi.</p>
+    </details>
+    <details>
+      <summary>Apakah ada garansi kalau script gagal jalan?</summary>
+      <p>Kendala teknis saat instalasi bisa langsung dikonsultasikan ke admin melalui WhatsApp untuk dibantu troubleshoot.</p>
+    </details>
+    <details>
+      <summary>Bagaimana cara memperpanjang masa aktif IP?</summary>
+      <p>Hubungi admin sebelum masa aktif habis, sebutkan IP yang ingin diperpanjang dan pilih durasi baru.</p>
+    </details>
+  </section>
+
+  <hr class="rule">
+
+  <section id="kontak">
+    <div class="section-head">
+      <span class="tag">// kontak</span>
+      <h2>Hubungi admin</h2>
+      <p>Untuk pemesanan, aktivasi IP, atau pertanyaan seputar autoscript.</p>
+    </div>
+    <div class="contact-card">
+      <div>
+        <div class="who">admin zoy tunneling</div>
+        <div class="num">0838-7714-0463</div>
+      </div>
+      <a class="wa-btn" href="https://wa.me/6283877140463" target="_blank" rel="noopener">Chat via WhatsApp</a>
+    </div>
+  </section>
+
+</main>
+
+<a class="wa-float" href="https://wa.me/6283877140463" target="_blank" rel="noopener" aria-label="Chat WhatsApp admin">💬</a>
 
 <footer>
-  <div class="logo">💙 zoy digital</div>
-  <p style="margin-bottom:14px;">© 2026 Zoy Digital. Yuk belajar ngoding bareng-bareng.</p>
-  <a href="https://www.tiktok.com/@zoydigital" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-weight:800;color:var(--blue-dark);">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2h-3.2v13.2a2.7 2.7 0 1 1-2.7-2.7c.2 0 .5 0 .7.1V9.4a6 6 0 1 0 5.2 5.9V9.1a7.9 7.9 0 0 0 4.5 1.4V7.3a4.8 4.8 0 0 1-4.5-4.6z"/></svg>
-    @zoydigital
-  </a>
+  zoy tunneling — sewa autoscript install vps · dibuat untuk kebutuhan operasional, bukan disertai jaminan hukum atau layanan pihak ketiga
 </footer>
 
 <script>
-  // scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('in');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  reveals.forEach(el => observer.observe(el));
-
-  // typing effect in code editor mockup
-  const typingEl = document.getElementById('typingLine');
-  const phrases = ['"masih belajar 🌱"', '"progress dikit 🚀"', '"error dulu, sukses kemudian"'];
-  let phraseIndex = 0;
-  let charIndex = 0;
-  let deleting = false;
-
-  function typeLoop(){
-    const current = phrases[phraseIndex];
-    if(!deleting){
-      charIndex++;
-      if(charIndex > current.length){
-        deleting = true;
-        setTimeout(typeLoop, 1400);
-        return;
-      }
-    } else {
-      charIndex--;
-      if(charIndex === 0){
-        deleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-      }
+  // typing animation in hero terminal — single orchestrated moment
+  const el = document.getElementById('typedTerminal');
+  const lines = [
+    {text: '$ ssh root@your-vps-ip', cls:'prompt'},
+    {text: '# menjalankan autoscript zoy tunneling...', cls:'comment'},
+    {text: '$ ./mahbub', cls:'prompt'},
+    {text: '# instalasi selesai. VPS siap dipakai ✓', cls:'comment'},
+  ];
+  let li=0, ci=0;
+  function typeLine(){
+    if(li>=lines.length){
+      el.innerHTML += '<span class="caret"></span>';
+      return;
     }
-    typingEl.textContent = current.slice(0, charIndex);
-    setTimeout(typeLoop, deleting ? 35 : 70);
+    const line = lines[li];
+    if(ci===0){
+      el.innerHTML += `<div><span class="${line.cls}">`;
+    }
+    if(ci<line.text.length){
+      el.innerHTML = el.innerHTML.slice(0,-0);
+      // append char safely
+      const container = el.querySelectorAll('div');
+      const last = container[container.length-1];
+      last.querySelector('span').textContent += line.text[ci];
+      ci++;
+      setTimeout(typeLine, 18+Math.random()*22);
+    } else {
+      el.innerHTML += '</div>';
+      li++; ci=0;
+      setTimeout(typeLine, 260);
+    }
   }
-  if(typingEl){ typeLoop(); }
+  setTimeout(typeLine, 400);
+
+  // copy button
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    const raw = document.getElementById('installCode').innerText;
+    navigator.clipboard.writeText(raw).then(()=>{
+      const btn = document.getElementById('copyBtn');
+      const old = btn.textContent;
+      btn.textContent = 'copied!';
+      setTimeout(()=>{btn.textContent = old;}, 1600);
+    });
+  });
 </script>
 
 </body>
