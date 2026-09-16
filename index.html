@@ -1,713 +1,202 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zoy Tunneling — Sewa Autoscript Install VPS</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #090d0a;
-    --bg-card: #0f1511;
-    --bg-card-hover: #141c16;
-    --border: #1e2920;
-    --border-bright: #2d4231;
-    
-    --accent: #22c55e;
-    --accent-glow: rgba(34, 197, 94, 0.12);
-    --accent-hover: #16a34a;
-    
-    --yellow: #eab308;
-    --yellow-dim: rgba(234, 179, 8, 0.1);
-    
-    --text-main: #f0fdf4;
-    --text-muted: #86efac;
-    --text-dim: #64748b;
-    
-    --font-sans: 'Plus Jakarta Sans', sans-serif;
-    --font-serif: 'Instrument Serif', serif;
-    --font-mono: 'JetBrains Mono', monospace;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  
-  body {
-    background-color: var(--bg);
-    color: var(--text-main);
-    font-family: var(--font-sans);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  a { color: inherit; text-decoration: none; }
-  img { max-width: 100%; display: block; }
-
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  /* --- HEADER --- */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(9, 13, 10, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 70px;
-  }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: var(--font-mono);
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--accent);
-  }
-
-  .brand-badge {
-    background: var(--accent-glow);
-    border: 1px solid var(--accent);
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 12px;
-  }
-
-  .btn-nav {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    font-weight: 600;
-    background: var(--accent);
-    color: #000;
-    padding: 9px 18px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-  }
-
-  .btn-nav:hover {
-    background: var(--accent-hover);
-    transform: translateY(-1px);
-  }
-
-  /* --- HERO SECTION --- */
-  .hero {
-    padding: 80px 0 60px;
-    position: relative;
-  }
-
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--accent);
-    background: var(--accent-glow);
-    border: 1px solid var(--border-bright);
-    padding: 6px 14px;
-    border-radius: 20px;
-    margin-bottom: 24px;
-  }
-
-  .hero h1 {
-    font-family: var(--font-serif);
-    font-size: clamp(42px, 6vw, 68px);
-    font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: -0.01em;
-    margin-bottom: 20px;
-    color: #fff;
-  }
-
-  .hero h1 span {
-    color: var(--accent);
-    font-style: italic;
-  }
-
-  .hero p {
-    font-size: 17px;
-    color: #a3b899;
-    max-width: 580px;
-    margin-bottom: 36px;
-  }
-
-  .hero-btns {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 48px;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #051308;
-    font-weight: 700;
-    padding: 14px 28px;
-    border-radius: 10px;
-    font-size: 15px;
-    transition: all 0.2s;
-  }
-
-  .btn-primary:hover {
-    background: #16a34a;
-    transform: translateY(-2px);
-  }
-
-  /* TRUST BADGES */
-  .trust-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    border-top: 1px solid var(--border);
-    padding-top: 30px;
-  }
-
-  .trust-item {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: #8fa491;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .trust-item span { color: var(--accent); font-size: 16px; }
-
-  /* --- SECTIONS --- */
-  section { padding: 70px 0; }
-  
-  .section-header {
-    margin-bottom: 40px;
-  }
-
-  .section-header .sub {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 8px;
-    display: block;
-  }
-
-  .section-header h2 {
-    font-family: var(--font-serif);
-    font-size: clamp(32px, 4vw, 42px);
-    font-weight: 400;
-    color: #fff;
-  }
-
-  .section-header p {
-    color: #8fa491;
-    font-size: 15px;
-    margin-top: 8px;
-  }
-
-  /* --- PRICING GRID --- */
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  .price-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 30px 24px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    transition: all 0.25s ease;
-  }
-
-  .price-card:hover {
-    border-color: var(--border-bright);
-    background: var(--bg-card-hover);
-    transform: translateY(-4px);
-  }
-
-  .price-card.featured {
-    border-color: var(--accent);
-    background: linear-gradient(180deg, rgba(34,197,94,0.06) 0%, var(--bg-card) 100%);
-  }
-
-  .badge-popular {
-    position: absolute;
-    top: -12px;
-    right: 24px;
-    background: var(--accent);
-    color: #051308;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 20px;
-  }
-
-  .price-duration {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--text-muted);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 16px;
-  }
-
-  .price-amount {
-    font-family: var(--font-serif);
-    font-size: 48px;
-    color: #fff;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .price-amount span {
-    font-family: var(--font-sans);
-    font-size: 16px;
-    color: var(--accent);
-    font-weight: 600;
-    margin-right: 2px;
-  }
-
-  .price-desc {
-    font-size: 13.5px;
-    color: #8fa491;
-    margin-top: auto;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
-  }
-
-  .price-note {
-    margin-top: 20px;
-    background: var(--yellow-dim);
-    border-left: 3px solid var(--yellow);
-    padding: 12px 16px;
-    border-radius: 0 8px 8px 0;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: #fde047;
-  }
-
-  /* --- OS SUPPORT --- */
-  .os-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .os-box {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-  }
-
-  .os-box h3 {
-    font-family: var(--font-mono);
-    font-size: 14px;
-    color: var(--accent);
-    margin-bottom: 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .os-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .os-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--font-mono);
-    font-size: 13.5px;
-    color: var(--text-main);
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .os-item:last-child { border-bottom: none; padding-bottom: 0; }
-  .os-item span { color: var(--accent); }
-
-  /* --- PREVIEW IMAGE --- */
-  .preview-wrapper {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .preview-img {
-    width: 100%;
-    display: block;
-    background: #000;
-  }
-
-  .preview-footer {
-    padding: 16px 20px;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--text-dim);
-    border-top: 1px solid var(--border);
-  }
-
-  /* --- STEPS & CODE --- */
-  .steps-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 30px;
-  }
-
-  .step-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    padding: 24px;
-    border-radius: 14px;
-  }
-
-  .step-num {
-    font-family: var(--font-mono);
-    color: var(--accent);
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 12px;
-  }
-
-  .step-title {
-    font-weight: 600;
-    font-size: 15px;
-    margin-bottom: 6px;
-    color: #fff;
-  }
-
-  .step-desc {
-    font-size: 13.5px;
-    color: #8fa491;
-  }
-
-  /* CODE BLOCK */
-  .code-box {
-    background: #040705;
-    border: 1px solid var(--border-bright);
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 16px 32px rgba(0,0,0,0.4);
-  }
-
-  .code-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 20px;
-    background: #090e0b;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .code-bar span {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-dim);
-  }
-
-  .copy-btn {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 600;
-    background: var(--accent-glow);
-    color: var(--accent);
-    border: 1px solid var(--border-bright);
-    padding: 6px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-
-  .copy-btn:hover { background: rgba(34,197,94,0.2); }
-
-  pre.code-content {
-    padding: 20px;
-    font-family: var(--font-mono);
-    font-size: 12.5px;
-    line-height: 1.8;
-    color: #4ade80;
-    overflow-x: auto;
-  }
-
-  /* --- FAQ --- */
-  .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  details {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px 24px;
-    transition: border-color 0.2s;
-  }
-
-  details[open] { border-color: var(--border-bright); }
-
-  summary {
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 15px;
-    color: #fff;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  summary::-webkit-details-marker { display: none; }
-  summary::after {
-    content: "+";
-    color: var(--accent);
-    font-size: 20px;
-    font-weight: 400;
-  }
-
-  details[open] summary::after { content: "–"; }
-
-  details p {
-    color: #8fa491;
-    font-size: 14px;
-    margin-top: 12px;
-    line-height: 1.6;
-  }
-
-  /* --- CONTACT CTA --- */
-  .cta-banner {
-    background: linear-gradient(135deg, #143820 0%, #0c2014 100%);
-    border: 1px solid #235331;
-    border-radius: 20px;
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-  }
-
-  .cta-banner .label {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 6px;
-  }
-
-  .cta-banner .number {
-    font-family: var(--font-mono);
-    font-size: 28px;
-    font-weight: 700;
-    color: #fff;
-  }
-
-  .btn-whatsapp {
-    background: #fff;
-    color: #0f3d22;
-    font-weight: 700;
-    font-size: 14px;
-    padding: 14px 28px;
-    border-radius: 10px;
-    transition: transform 0.2s;
-    white-space: nowrap;
-  }
-
-  .btn-whatsapp:hover { transform: scale(1.03); }
-
-  /* --- FOOTER --- */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 0;
-    text-align: center;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-dim);
-  }
-
-  /* --- RESPONSIVE --- */
-  @media (max-width: 768px) {
-    .pricing-grid, .os-grid, .steps-container, .trust-grid {
-      grid-template-columns: 1fr;
-    }
-    .cta-banner {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoy Tunneling - Sewa Autoscript Install VPS Premium</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 font-sans selection:bg-cyan-500 selection:text-white">
 
-<header>
-  <div class="container nav">
-    <div class="brand">
-      <span class="brand-badge">zoy@tun</span>
-      <span>Zoy Tunneling</span>
-    </div>
-    <a class="btn-nav" href="#kontak">Hubungi Admin</a>
-  </div>
-</header>
-
-<main class="container">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-tag">● Autoscript Install VPS High-Performance</div>
-    <h1>Sewa autoscript VPS, <span>rapi &amp; siap pakai</span> per IP.</h1>
-    <p>Solusi setup VPS tunneling kilat sekali jalan. Sepenuhnya mendukung Debian 10–13 serta Ubuntu versi 20 hingga 25. Sistem sewa per IP transparan tanpa langganan rumit.</p>
-    
-    <div class="hero-btns">
-      <a class="btn-primary" href="#harga">Lihat Pilihan Harga</a>
-    </div>
-
-    <div class="trust-grid">
-      <div class="trust-item"><span>✓</span> Support 8 Versi OS</div>
-      <div class="trust-item"><span>✓</span> Aktivasi Kilat via Admin</div>
-      <div class="trust-item"><span>✓</span> Tanpa Biaya Tersembunyi</div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section id="harga">
-    <div class="section-header">
-      <span class="sub">Investasi Terjangkau</span>
-      <h2>Pilihan Durasi Sewa Per IP</h2>
-      <p>Makin panjang durasi yang Anda pilih, makin hemat anggaran operasional Anda.</p>
-    </div>
-
-    <div class="pricing-grid">
-      <div class="price-card">
-        <div class="price-duration">1 Bulan</div>
-        <div class="price-amount"><span>Rp</span>15k</div>
-        <div class="price-desc">Akses autoscript penuh untuk 1 IP VPS aktif.</div>
-      </div>
-      
-      <div class="price-card">
-        <div class="price-duration">2 Bulan</div>
-        <div class="price-amount"><span>Rp</span>25k</div>
-        <div class="price-desc">Masa aktif lebih panjang, efisiensi optimal.</div>
-      </div>
-
-      <div class="price-card featured">
-        <div class="badge-popular">PALING HEMAT</div>
-        <div class="price-duration">3 Bulan</div>
-        <div class="price-amount"><span>Rp</span>35k</div>
-        <div class="price-desc">Harga per bulan paling rendah, performa stabil maksimal.</div>
-      </div>
-    </div>
-
-    <div class="price-note">
-      * Tarif dihitung per 1 alamat IP VPS. Untuk pembelian paketan banyak IP, silakan negosiasi langsung dengan admin.
-    </div>
-  </section>
-
-  <!-- OS SUPPORT -->
-  <section>
-    <div class="section-header">
-      <span class="sub">Kompatibilitas Luas</span>
-      <h2>Distribusi Linux Didukung</h2>
-      <p>Script telah diuji stabil dan optimal di berbagai versi sistem operasi populer.</p>
-    </div>
-
-    <div class="os-grid">
-      <div class="os-box">
-        <h3>Debian Series</h3>
-        <div class="os-list">
-          <div class="os-item">Debian 10 <span>✓</span></div>
-          <div class="os-item">Debian 11 <span>✓</span></div>
-          <div class="os-item">Debian 12 <span>✓</span></div>
-          <div class="os-item">Debian 13 <span>✓</span></div>
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-terminal text-cyan-400 text-2xl"></i>
+                <span class="text-xl font-bold tracking-wider uppercase bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Zoy Tunneling</span>
+            </div>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#features" class="hover:text-cyan-400 transition">Fitur</a>
+                <a href="#pricing" class="hover:text-cyan-400 transition">Harga & Lisensi</a>
+                <a href="#os-support" class="hover:text-cyan-400 transition">OS Support</a>
+                <a href="#install" class="hover:text-cyan-400 transition">Cara Install</a>
+            </nav>
+            <div>
+                <a href="https://wa.me/6283877140463?text=Halo%20Admin,%20saya%20mau%20order%20license%20autoscript%20Zoy%20Tunneling" target="_blank" class="bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-semibold px-4 py-2 rounded-lg text-sm transition shadow-lg shadow-cyan-500/20">
+                    <i class="fa-brands fa-whatsapp mr-1"></i> Kontak Admin
+                </a>
+            </div>
         </div>
-      </div>
+    </header>
 
-      <div class="os-box">
-        <h3>Ubuntu Series</h3>
-        <div class="os-list">
-          <div class="os-item">Ubuntu 20.04 <span>✓</span></div>
-          <div class="os-item">Ubuntu 22.04 <span>✓</span></div>
-          <div class="os-item">Ubuntu 24.04 <span>✓</span></div>
-          <div class="os-item">Ubuntu 25.04 <span>✓</span></div>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/20 via-slate-950/0 to-slate-950 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-cyan-950/60 border border-cyan-800/50 px-3 py-1 rounded-full text-cyan-400 text-xs font-medium">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                        <span>Autoscript VPS High Performance & Stabil</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Sewa Autoscript <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Install VPS</span> Profesional
+                    </h1>
+                    <p class="text-slate-400 text-lg max-w-2xl">
+                        Solusi terbaik untuk pengelolaan server tunneling dengan skrip instalasi otomatis yang cepat, bersih, dan mendukung berbagai versi OS Linux terbaru.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="#pricing" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition shadow-lg shadow-cyan-500/25 flex items-center space-x-2">
+                            <span>Pilih Paket Harga</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#install" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 font-semibold px-6 py-3 rounded-xl transition flex items-center space-x-2">
+                            <i class="fa-solid fa-code text-cyan-400"></i>
+                            <span>Script Install</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md bg-slate-900 border border-slate-800 rounded-2xl p-2 shadow-2xl shadow-cyan-500/10">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-lg opacity-25 -z-10"></div>
+                        <img src="https://raw.githubusercontent.com/joytun21/joy/main/image/onta.jpg" alt="Zoy Tunneling Autoscript" class="rounded-xl w-full object-cover shadow-inner">
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PREVIEW -->
-  <section>
-    <div class="section-header">
-      <span class="sub">Antarmuka</span>
-      <h2>Pratinjau Tampilan Script</h2>
-      <p>Menu interaktif yang rapi dan bersih langsung dari terminal Anda.</p>
-    </div>
+    <!-- OS Support Section -->
+    <section id="os-support" class="py-16 bg-slate-900/50 border-y border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-4">Didukung Multi OS Linux</h2>
+            <p class="text-slate-400 mb-10 max-w-xl mx-auto">Autoscript Zoy Tunneling kompatibel dengan berbagai distribusi Linux populer saat ini.</p>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center space-y-2 hover:border-cyan-500/50 transition">
+                    <i class="fa-brands fa-debian text-3xl text-red-500"></i>
+                    <span class="font-bold">Debian</span>
+                    <span class="text-xs text-slate-400">Versi 10, 11, 12, 13</span>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center space-y-2 hover:border-cyan-500/50 transition">
+                    <i class="fa-brands fa-ubuntu text-3xl text-orange-500"></i>
+                    <span class="font-bold">Ubuntu</span>
+                    <span class="text-xs text-slate-400">Versi 20, 22, 24, 25</span>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center space-y-2 hover:border-cyan-500/50 transition">
+                    <i class="fa-solid fa-bolt text-3xl text-yellow-400"></i>
+                    <span class="font-bold">Fast Setup</span>
+                    <span class="text-xs text-slate-400">Otomatis & Bersih</span>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center space-y-2 hover:border-cyan-500/50 transition">
+                    <i class="fa-solid fa-shield-halved text-3xl text-cyan-400"></i>
+                    <span class="font-bold">Secure</span>
+                    <span class="text-xs text-slate-400">Optimasi Jaringan</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="preview-wrapper">
-      <img 
-        src="https://raw.githubusercontent.com/joytun21/joy/main/image/onta.jpg" 
-        alt="Preview Autoscript Zoy Tunneling"
-        class="preview-img"
-        onerror="this.style.display='none'"
-      >
-      <div class="preview-footer">
-        Zoy Tunneling Menu Interface — Otomatis tampil setelah instalasi selesai dijalankan.
-      </div>
-    </div>
-  </section>
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">Daftar Harga Lisensi per IP</h2>
+                <p class="text-slate-400">Pilih durasi paket lisensi VPS sesuai kebutuhan Anda dengan harga terjangkau.</p>
+            </div>
 
-  <!-- STEPS & INSTALL -->
-  <section>
-    <div class="section-header">
-      <span class="sub">Panduan Cepat</span>
-      <h2>3 Langkah Mudah Memulai</h2>
-    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Paket 1 Bulan -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 flex flex-col justify-between hover:border-cyan-500 transition duration-300">
+                    <div>
+                        <div class="text-sm font-semibold text-cyan-400 uppercase tracking-wider mb-2">Paket Hemat</div>
+                        <h3 class="text-2xl font-bold mb-4">1 Bulan</h3>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-extrabold">Rp 15k</span>
+                            <span class="text-slate-400 ml-2">/ IP</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Aktivasi 1 IP VPS</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Full Support Debian & Ubuntu</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Update Script Otomatis</li>
+                        </ul>
+                    </div>
+                    <button onclick="orderWhatsApp('1 Bulan', 'Rp 15.000')" class="w-full bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 font-bold py-3 rounded-xl transition duration-200 text-center">
+                        Order Sekarang
+                    </button>
+                </div>
 
-    <div class="steps-container">
-      <div class="step-card">
-        <div class="step-num">01</div>
-        <div class="step-title">Sewa &amp; Bayar</div>
-        <div class="step-desc">Hubungi admin, pilih paket durasi, lakukan pembayaran dan daftarkan IP VPS Anda.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <div class="step-title">Akses SSH</div>
-        <div class="step-desc">Masuk ke server VPS bersih (fresh install) milik Anda menggunakan akses root.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <div class="step-title">Eksekusi Command</div>
-        <div class="step-desc">Tempel script instalasi di bawah ini dan biarkan sistem merampungkan konfigurasi.</div>
-      </div>
-    </div>
+                <!-- Paket 2 Bulan (Featured) -->
+                <div class="bg-slate-900 border-2 border-cyan-500 rounded-2xl p-8 flex flex-col justify-between relative shadow-xl shadow-cyan-500/10">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                        Paling Populer
+                    </div>
+                    <div>
+                        <div class="text-sm font-semibold text-cyan-400 uppercase tracking-wider mb-2">Paket Reguler</div>
+                        <h3 class="text-2xl font-bold mb-4">2 Bulan</h3>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-extrabold">Rp 25k</span>
+                            <span class="text-slate-400 ml-2">/ IP</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Aktivasi 1 IP VPS</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Full Support Debian & Ubuntu</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Hemat & Lebih Awet</li>
+                        </ul>
+                    </div>
+                    <button onclick="orderWhatsApp('2 Bulan', 'Rp 25.000')" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3 rounded-xl transition duration-200 text-center shadow-lg shadow-cyan-500/20">
+                        Order Sekarang
+                    </button>
+                </div>
 
-    <div class="code-box">
-      <div class="code-bar">
-        <span>install.sh — Terminal Execution</span>
-        <button class="copy-btn" id="copyBtn">Salin Script</button>
-      </div>
-      <pre class="code-content" id="installCode">sysctl -w net.ipv6.conf.all.disable_ipv6=1 && \
+                <!-- Paket 3 Bulan -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 flex flex-col justify-between hover:border-cyan-500 transition duration-300">
+                    <div>
+                        <div class="text-sm font-semibold text-cyan-400 uppercase tracking-wider mb-2">Paket Puas</div>
+                        <h3 class="text-2xl font-bold mb-4">3 Bulan</h3>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-extrabold">Rp 35k</span>
+                            <span class="text-slate-400 ml-2">/ IP</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Aktivasi 1 IP VPS</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Full Support Debian & Ubuntu</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Durasi Lebih Panjang</li>
+                        </ul>
+                    </div>
+                    <button onclick="orderWhatsApp('3 Bulan', 'Rp 35.000')" class="w-full bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 font-bold py-3 rounded-xl transition duration-200 text-center">
+                        Order Sekarang
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Command Section -->
+    <section id="install" class="py-20 bg-slate-900/50 border-t border-slate-800/60">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-3">Cara Instalasi Autoscript</h2>
+                <p class="text-slate-400">Salin perintah terminal di bawah ini dan jalankan pada VPS Anda yang sudah terdaftar lisensinya.</p>
+            </div>
+
+            <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 shadow-2xl relative">
+                <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="text-xs text-slate-500 font-mono ml-2">bash - terminal</span>
+                    </div>
+                    <button onclick="copyScript()" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center space-x-1">
+                        <i id="copyIcon" class="fa-regular fa-copy"></i>
+                        <span id="copyText">Salin Script</span>
+                    </button>
+                </div>
+                <pre id="scriptCode" class="text-xs sm:text-sm font-mono text-cyan-300 overflow-x-auto whitespace-pre-wrap leading-relaxed">
+sysctl -w net.ipv6.conf.all.disable_ipv6=1 && \
 sysctl -w net.ipv6.conf.default.disable_ipv6=1 && \
 apt update --allow-releaseinfo-change && \
 apt upgrade -y && \
@@ -715,60 +204,46 @@ apt install -y curl wget unzip sudo gnupg lsb-release build-essential libcap-ng-
 curl -fsSL -O https://raw.githubusercontent.com/joytun21/schaya/main/mahbub && \
 chmod +x mahbub && \
 ./mahbub</pre>
-    </div>
-  </section>
+            </div>
+        </div>
+    </section>
 
-  <!-- FAQ -->
-  <section>
-    <div class="section-header">
-      <span class="sub">Informasi Tambahan</span>
-      <h2>Pertanyaan Umum (FAQ)</h2>
-    </div>
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-900 py-12 text-center text-slate-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <div class="flex justify-center items-center space-x-2 text-slate-200 font-bold text-lg">
+                <i class="fa-solid fa-terminal text-cyan-400"></i>
+                <span>Zoy Tunneling</span>
+            </div>
+            <p>Penyedia layanan autoscript install VPS handal dan terpercaya.</p>
+            <p class="text-xs text-slate-600">&copy; 2026 Zoy Tunneling. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <div class="faq-list">
-      <details open>
-        <summary>Apakah masa aktif berlaku untuk multi-server?</summary>
-        <p>Satu harga paket berlaku untuk 1 alamat IP VPS spesifik. Jika Anda ingin mengaktifkan di server berbeda, diperlukan pendaftaran IP baru.</p>
-      </details>
-      <details>
-        <summary>Bagaimana jika OS VPS saya berbeda dari daftar?</summary>
-        <p>Autoscript ini sudah dirancang khusus untuk kompatibilitas optimal di Debian dan Ubuntu versi tersebut. Konsultasikan terlebih dahulu jika memakai OS lain.</p>
-      </details>
-      <details>
-        <summary>Apakah ada bantuan jika proses instalasi gagal?</summary>
-        <p>Tentu, Anda bisa langsung menghubungi admin via WhatsApp untuk mendapatkan bantuan penanganan masalah teknis (*troubleshooting*).</p>
-      </details>
-    </div>
-  </section>
+    <!-- JavaScript for Interactions -->
+    <script>
+        function orderWhatsApp(duration, price) {
+            const phone = "6283877140463";
+            const message = `Halo Admin Zoy Tunneling, saya ingin memesan lisensi autoscript VPS:\n\n- Durasi: ${duration}\n- Harga: ${price}\n- Mohon info cara pembayaran dan proses registrasi IP VPS saya. Terima kasih!`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
+        }
 
-  <!-- CONTACT CTA -->
-  <section id="kontak">
-    <div class="cta-banner">
-      <div>
-        <div class="label">Butuh Bantuan &amp; Pemesanan?</div>
-        <div class="number">0838-7714-0463</div>
-      </div>
-      <a class="btn-whatsapp" href="https://wa.me/6283877140463" target="_blank" rel="noopener">Chat WhatsApp Admin</a>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  Zoy Tunneling — Sewa Autoscript Install VPS &bull; Dibangun untuk kemudahan operasional
-</footer>
-
-<script>
-  document.getElementById('copyBtn').addEventListener('click', function(){
-    const text = document.getElementById('installCode').innerText;
-    navigator.clipboard.writeText(text).then(() => {
-      const btn = document.getElementById('copyBtn');
-      const oldText = btn.textContent;
-      btn.textContent = 'Berhasil Disalin!';
-      setTimeout(() => { btn.textContent = oldText; }, 2000);
-    });
-  });
-</script>
-
+        function copyScript() {
+            const codeText = document.getElementById('scriptCode').innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                const copyText = document.getElementById('copyText');
+                const copyIcon = document.getElementById('copyIcon');
+                
+                copyText.innerText = 'Berhasil Disalin!';
+                copyIcon.className = 'fa-solid fa-check text-green-400';
+                
+                setTimeout(() => {
+                    copyText.innerText = 'Salin Script';
+                    copyIcon.className = 'fa-regular fa-copy';
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>
