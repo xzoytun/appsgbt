@@ -85,26 +85,18 @@
                         </a>
                     </div>
                 </div>
+                <!-- Perbaikan Container Gambar -->
                 <div class="lg:col-span-5 max-w-xs sm:max-w-sm mx-auto lg:max-w-none w-full">
-                    <div class="relative bg-slate-900 border border-slate-800 rounded-2xl p-2 shadow-xl shadow-cyan-500/10">
+                    <div class="relative bg-slate-900 border border-slate-800 rounded-2xl p-3 shadow-xl shadow-cyan-500/10 flex justify-center">
                         <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-md opacity-20 -z-10"></div>
-                        <!-- Optimized WebP image with fallback layout -->
-                        <picture>
-                            <source srcset="https://raw.githubusercontent.com/joytun21/joy/main/image/onta.webp" type="image/webp">
-                            <img
-    src="https://raw.githubusercontent.com/joytun21/joy/main/image/onta.jpg"
-    alt="Joy Tunneling Autoscript"
-    loading="eager"
-    fetchpriority="high"
-    class="rounded-xl w-full h-auto object-cover shadow-inner">
-                        </picture>
+                        <img src="https://raw.githubusercontent.com/joytun21/joy/main/image/onta.jpg" alt="Joy Tunneling Autoscript" class="rounded-xl w-full h-auto max-h-[320px] object-cover shadow-inner">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trust / Benefit Section (New) -->
+    <!-- Trust / Benefit Section -->
     <section id="benefits" class="py-12 bg-slate-900/20 border-t border-slate-800/40">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -324,7 +316,7 @@
                 <p class="text-slate-400 text-sm sm:text-base">Ikuti tahapan penting di bawah ini sebelum menjalankan script pada VPS Anda.</p>
             </div>
 
-            <!-- Warning Box (New) -->
+            <!-- Warning Box -->
             <div class="bg-amber-950/30 border border-amber-500/40 rounded-2xl p-5 sm:p-6 mb-6 relative">
                 <div class="flex items-start space-x-3.5">
                     <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 flex-shrink-0 mt-0.5">
@@ -443,7 +435,6 @@ chmod +x mahbub && \
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Close mobile menu when clicking a link
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
@@ -457,7 +448,6 @@ chmod +x mahbub && \
             window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
         }
 
-        // Robust Clipboard Copy Function with Fallback
         function copyScript() {
             const codeText = document.getElementById('scriptCode').innerText;
             const copyText = document.getElementById('copyText');
@@ -477,7 +467,7 @@ chmod +x mahbub && \
         function fallbackCopyText(text, copyTextElem, copyIconElem) {
             const textArea = document.createElement("textarea");
             textArea.value = text;
-            textArea.style.position = "fixed";  // Avoid scrolling to bottom
+            textArea.style.position = "fixed";
             document.body.appendChild(textArea);
             textArea.focus();
             textArea.select();
