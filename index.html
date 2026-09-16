@@ -85,7 +85,7 @@
                         </a>
                     </div>
                 </div>
-                <!-- Perbaikan Container Gambar -->
+                <!-- Container Gambar -->
                 <div class="lg:col-span-5 max-w-xs sm:max-w-sm mx-auto lg:max-w-none w-full">
                     <div class="relative bg-slate-900 border border-slate-800 rounded-2xl p-3 shadow-xl shadow-cyan-500/10 flex justify-center">
                         <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-md opacity-20 -z-10"></div>
@@ -97,7 +97,7 @@
     </section>
 
     <!-- Trust / Benefit Section -->
-    <section id="benefits" class="py-12 bg-slate-900/20 border-t border-slate-800/40">
+    <section id="benefits" class="py-12 bg-slate-900/20 border-t border-slate-800/40 scroll-mt-24">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-xl space-y-2">
@@ -125,7 +125,7 @@
     </section>
 
     <!-- About & Advanced Features Section -->
-    <section id="about" class="py-14 sm:py-16 bg-slate-900/30 border-t border-slate-800/60">
+    <section id="about" class="py-14 sm:py-16 bg-slate-900/30 border-t border-slate-800/60 scroll-mt-24">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
                 <h2 class="text-2xl sm:text-3xl font-bold mb-3">Fitur Unggulan Autoscript Joy Tunneling</h2>
@@ -191,7 +191,7 @@
     </section>
 
     <!-- OS Support Section -->
-    <section id="os-support" class="py-14 bg-slate-900/40 border-y border-slate-800/60">
+    <section id="os-support" class="py-14 bg-slate-900/40 border-y border-slate-800/60 scroll-mt-24">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-2xl sm:text-3xl font-bold mb-3">Didukung Multi OS Linux</h2>
             <p class="text-slate-400 text-sm sm:text-base mb-8 max-w-lg mx-auto">Autoscript Joy Tunneling kompatibel optimal dengan berbagai distribusi Linux populer.</p>
@@ -234,7 +234,7 @@
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="py-16 sm:py-20">
+    <section id="pricing" class="py-16 sm:py-20 scroll-mt-24">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <h2 class="text-2xl sm:text-3xl font-extrabold mb-3">Daftar Harga Lisensi per IP</h2>
@@ -309,7 +309,7 @@
     </section>
 
     <!-- Installation Command & Domain Requirement Section -->
-    <section id="install" class="py-16 bg-slate-900/40 border-t border-slate-800/60">
+    <section id="install" class="py-16 bg-slate-900/40 border-t border-slate-800/60 scroll-mt-24">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10">
                 <h2 class="text-2xl sm:text-3xl font-bold mb-2.5">Panduan & Cara Instalasi</h2>
@@ -427,7 +427,6 @@ chmod +x mahbub && \
 
     <!-- JavaScript for Interactions -->
     <script>
-        // Mobile Menu Toggle Logic
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -480,7 +479,7 @@ chmod +x mahbub && \
                     alert('Gagal menyalin skrip secara otomatis.');
                 }
             } catch (err) {
-                alert('Browser tidak mendukungi fungsi salin.');
+                alert('Browser tidak mendukung fungsi salin.');
             }
 
             document.body.removeChild(textArea);
