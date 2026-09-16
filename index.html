@@ -28,8 +28,7 @@
 
             <!-- Navigation Links -->
             <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-300">
-                <a href="#about" class="hover:text-cyan-400 transition">Tentang</a>
-                <a href="#features" class="hover:text-cyan-400 transition">Fitur</a>
+                <a href="#about" class="hover:text-cyan-400 transition">Fitur & Keunggulan</a>
                 <a href="#pricing" class="hover:text-cyan-400 transition">Harga</a>
                 <a href="#os-support" class="hover:text-cyan-400 transition">OS Support</a>
                 <a href="#install" class="hover:text-cyan-400 transition">Install</a>
@@ -59,7 +58,7 @@
                         Sewa Autoscript <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Install VPS</span> Profesional
                     </h1>
                     <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                        Solusi terbaik untuk pengelolaan server tunneling dengan skrip instalasi otomatis yang cepat, bersih, dan mendukung berbagai versi OS Linux terbaru.
+                        Solusi terbaik untuk pengelolaan server tunneling dengan skrip instalasi otomatis yang cepat, bersih, dan mendukung berbagai fitur keamanan tingkat lanjut.
                     </p>
                     <div class="flex flex-wrap justify-center lg:justify-start gap-3 pt-2">
                         <a href="#pricing" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-lg shadow-cyan-500/20 flex items-center space-x-2">
@@ -82,37 +81,67 @@
         </div>
     </section>
 
-    <!-- About & Explanation Section -->
+    <!-- About & Advanced Features Section -->
     <section id="about" class="py-16 bg-slate-900/30 border-t border-slate-800/60">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-2xl sm:text-3xl font-bold mb-3">Apa itu Autoscript Joy Tunneling?</h2>
-                <p class="text-slate-400 text-sm sm:text-base">Sistem otomatisasi server tingkat lanjut yang dirancang khusus untuk memudahkan pengelolaan VPS tunneling tanpa ribet.</p>
+                <h2 class="text-2xl sm:text-3xl font-bold mb-3">Fitur Unggulan Autoscript Joy Tunneling</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Dirancang dengan sistem keamanan mutakhir untuk mengontrol server secara otomatis, akurat, dan real-time.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Feature 1: Super Cepat -->
                 <div class="bg-slate-900/80 border border-slate-800/80 p-6 rounded-2xl space-y-3">
                     <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl">
                         <i class="fa-solid fa-bolt"></i>
                     </div>
-                    <h3 class="font-bold text-base text-slate-200">Instalasi Super Cepat</h3>
-                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Hanya butuh 1 baris perintah (command), seluruh komponen server, web server, hingga modul keamanan terpasang otomatis dalam hitungan menit.</p>
+                    <h3 class="font-bold text-base text-slate-200">Instalasi Otomatis & Bersih</h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Hanya butuh 1 baris perintah (command), seluruh modul server, web server, hingga optimasi jaringan terpasang otomatis dalam hitungan menit.</p>
                 </div>
 
+                <!-- Feature 2: Multi Login SSH & Auto-Ban + Telegram -->
+                <div class="bg-slate-900/80 border border-slate-800/80 p-6 rounded-2xl space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-200">SSH Multi-Login & Auto-Ban</h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Mendeteksi akun SSH yang melanggar batas multi-login IP. Akun akan otomatis di-banned sesuai durasi timer di script, lengkap dengan laporan instan ke <strong>Bot Telegram</strong>.</p>
+                </div>
+
+                <!-- Feature 3: Xray Quota Limit + Telegram -->
+                <div class="bg-slate-900/80 border border-slate-800/80 p-6 rounded-2xl space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-200">Xray Quota Limit & Notif</h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Kelola protokol <strong>Vmess, Vless, & Trojan</strong> dengan batas kuota (quota limit) fleksibel. Jika kuota habis, sistem otomatis menonaktifkan akun & mengirim notifikasi ke <strong>Telegram</strong>.</p>
+                </div>
+
+                <!-- Feature 4: SSL & Domain -->
                 <div class="bg-slate-900/80 border border-slate-800/80 p-6 rounded-2xl space-y-3">
                     <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl">
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
-                    <h3 class="font-bold text-base text-slate-200">Support SSL & Domain</h3>
-                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Dilengkapi manajemen sertifikat SSL otomatis (Let's Encrypt) yang terhubung langsung dengan domain pribadi Anda untuk koneksi yang aman.</p>
+                    <h3 class="font-bold text-base text-slate-200">Auto SSL & Secure Domain</h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Dilengkapi manajemen sertifikat SSL otomatis (Let's Encrypt) yang terhubung langsung dengan domain pribadi Anda untuk enkripsi koneksi tingkat tinggi.</p>
                 </div>
 
+                <!-- Feature 5: Telegram Integration -->
+                <div class="bg-slate-900/80 border border-slate-800/80 p-6 rounded-2xl space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl">
+                        <i class="fa-brands fa-telegram"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-200">Real-Time Telegram Bot</h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Semua aktivitas penting server, mulai dari expired akun, pemberitahuan limit kuota, hingga laporan banned user dikirim langsung ke bot Telegram secara real-time.</p>
+                </div>
+
+                <!-- Feature 6: Easy Management -->
                 <div class="bg-slate-900/80 border border-slate-800/80 p-6 rounded-2xl space-y-3">
                     <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl">
                         <i class="fa-solid fa-sliders"></i>
                     </div>
-                    <h3 class="font-bold text-base text-slate-200">Manajemen Mudah</h3>
-                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Dilengkapi menu panel interaktif di terminal untuk memantau status server, membuat akun, hingga memperbarui sistem dengan sangat mudah.</p>
+                    <h3 class="font-bold text-base text-slate-200">Panel Menu Interaktif</h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Cukup ketik perintah singkat di terminal untuk mengakses panel menu admin guna memantau server, membuat akun, hingga cek masa aktif dengan sangat mudah.</p>
                 </div>
             </div>
         </div>
@@ -325,7 +354,7 @@ chmod +x mahbub && \
         </div>
     </section>
 
-    <!-- Footer (Clean & Professional Without Icon) -->
+    <!-- Footer -->
     <footer class="bg-slate-950 border-t border-slate-900 py-10 text-center text-slate-400 text-xs sm:text-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
             <div class="inline-block bg-slate-900/80 border border-slate-800 px-4 py-1.5 rounded-full mb-1">
