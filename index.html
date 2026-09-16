@@ -91,7 +91,12 @@
                         <!-- Optimized WebP image with fallback layout -->
                         <picture>
                             <source srcset="https://raw.githubusercontent.com/joytun21/joy/main/image/onta.webp" type="image/webp">
-                            <img src="https://raw.githubusercontent.com/joytun21/joy/main/image/onta.jpg" alt="Joy Tunneling Autoscript" loading="lazy" class="rounded-xl w-full h-auto object-cover shadow-inner">
+                            <img
+    src="https://raw.githubusercontent.com/joytun21/joy/main/image/onta.jpg"
+    alt="Joy Tunneling Autoscript"
+    loading="eager"
+    fetchpriority="high"
+    class="rounded-xl w-full h-auto object-cover shadow-inner">
                         </picture>
                     </div>
                 </div>
