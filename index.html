@@ -5,26 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zoy Tunneling — Sewa Autoscript Install VPS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0A0E0D;
-    --bg-raised:#121715;
-    --card:#161B19;
-    --line:#232D29;
-    --green:#39FF88;
-    --green-dim:#1F7A48;
-    --yellow:#F2C744;
-    --text:#E8EDEA;
-    --text-dim:#8FA39B;
-    --mono:'JetBrains Mono', monospace;
+    --maroon:#7A1F2B;
+    --maroon-dark:#4A1119;
+    --maroon-tint:#F7ECEC;
+    --paper:#FFFFFF;
+    --paper-soft:#FAF7F6;
+    --ink:#2B1E1F;
+    --ink-soft:#6B5658;
+    --line:#E7DCDA;
+    --gold:#B08A4E;
+    --serif:'Fraunces', serif;
     --sans:'Inter', sans-serif;
+    --mono:'JetBrains Mono', monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--bg);
-    color:var(--text);
+    background:var(--paper);
+    color:var(--ink);
     font-family:var(--sans);
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
@@ -33,261 +35,254 @@
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
   }
-
   a{color:inherit;}
   img{max-width:100%;display:block;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
 
-  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
-
-  /* subtle scanline / grid texture on bg */
-  body::before{
-    content:"";
-    position:fixed; inset:0;
-    background-image:
-      linear-gradient(rgba(57,255,136,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(57,255,136,0.025) 1px, transparent 1px);
-    background-size: 42px 42px;
-    pointer-events:none;
-    z-index:0;
-  }
-
+  /* HEADER */
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(10,14,13,0.85);
-    backdrop-filter:blur(8px);
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
   .nav{
     display:flex; align-items:center; justify-content:space-between;
-    padding:16px 24px; max-width:920px; margin:0 auto;
+    padding:18px 24px; max-width:960px; margin:0 auto;
   }
   .brand{
     display:flex; align-items:center; gap:10px;
-    font-family:var(--mono); font-weight:700; font-size:17px; letter-spacing:-0.02em;
+    font-family:var(--serif); font-weight:600; font-size:19px; letter-spacing:-0.01em;
+    color:var(--maroon-dark);
   }
-  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--green); box-shadow:0 0 10px var(--green);}
+  .brand .mark{
+    width:30px; height:30px; border-radius:7px;
+    background:var(--maroon); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--serif); font-weight:700; font-size:15px;
+  }
   .nav a.cta-mini{
-    font-family:var(--mono); font-size:13px; font-weight:600;
-    background:var(--green); color:#06120B;
-    padding:9px 16px; border-radius:6px; text-decoration:none;
-    transition:transform .15s ease, box-shadow .15s ease;
+    font-family:var(--sans); font-size:13.5px; font-weight:600;
+    background:var(--maroon); color:#fff;
+    padding:10px 18px; border-radius:6px; text-decoration:none;
+    transition:background .15s ease;
   }
-  .nav a.cta-mini:hover{transform:translateY(-1px); box-shadow:0 4px 14px rgba(57,255,136,0.25);}
+  .nav a.cta-mini:hover{background:var(--maroon-dark);}
 
   /* HERO */
-  .hero{position:relative; z-index:1; padding:64px 0 48px;}
-  .hero .eyebrow-line{
-    font-family:var(--mono); font-size:13px; color:var(--text-dim);
-    margin-bottom:18px; display:flex; align-items:center; gap:8px;
+  .hero{padding:72px 0 56px; position:relative;}
+  .hero-top{display:flex; align-items:center; gap:8px; margin-bottom:22px;}
+  .badge{
+    font-family:var(--sans); font-size:12.5px; font-weight:600; color:var(--maroon);
+    background:var(--maroon-tint); border:1px solid rgba(122,31,43,0.18);
+    padding:6px 13px; border-radius:20px; letter-spacing:0.01em;
   }
-  .hero .eyebrow-line .blink{
-    width:7px;height:14px;background:var(--green); display:inline-block;
-    animation:blink 1s steps(1) infinite;
-  }
-  @keyframes blink{50%{opacity:0;}}
-
   h1{
-    font-family:var(--sans); font-weight:700;
-    font-size:clamp(32px, 6vw, 50px);
-    line-height:1.12; letter-spacing:-0.02em;
-    max-width:14ch;
-    margin-bottom:18px;
+    font-family:var(--serif); font-weight:600;
+    font-size:clamp(34px, 5.6vw, 54px);
+    line-height:1.1; letter-spacing:-0.01em;
+    max-width:15ch;
+    margin-bottom:20px;
+    color:var(--maroon-dark);
   }
-  h1 span{color:var(--green);}
   .hero p.lede{
-    font-size:17px; color:var(--text-dim); max-width:52ch; margin-bottom:32px;
+    font-size:17px; color:var(--ink-soft); max-width:54ch; margin-bottom:36px;
   }
-
-  .terminal{
-    background:#080B0A;
-    border:1px solid var(--line);
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 24px 60px rgba(0,0,0,0.45);
-    margin-bottom:8px;
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:48px;}
+  .btn-primary{
+    font-family:var(--sans); font-weight:600; font-size:15px;
+    background:var(--maroon); color:#fff; padding:14px 26px; border-radius:7px;
+    text-decoration:none; transition:background .15s ease, transform .15s ease;
   }
-  .terminal-bar{
-    display:flex; align-items:center; gap:8px;
-    padding:11px 14px;
-    background:var(--bg-raised);
-    border-bottom:1px solid var(--line);
-  }
-  .terminal-bar span{width:11px;height:11px;border-radius:50%;}
-  .terminal-bar span:nth-child(1){background:#FF5F57;}
-  .terminal-bar span:nth-child(2){background:#FEBC2E;}
-  .terminal-bar span:nth-child(3){background:#28C840;}
-  .terminal-bar .path{
-    margin-left:8px; font-family:var(--mono); font-size:12px; color:var(--text-dim);
-  }
-  .terminal-body{
-    padding:20px; font-family:var(--mono); font-size:13px; line-height:1.8;
-    color:#B9F5CF; white-space:pre-wrap; word-break:break-all;
-    min-height:150px;
-  }
-  .terminal-body .prompt{color:var(--green); font-weight:700;}
-  .terminal-body .comment{color:var(--text-dim);}
-  .caret{display:inline-block; width:7px; height:15px; background:var(--green); vertical-align:middle; animation:blink 1s steps(1) infinite;}
-
-  /* SECTION helpers */
-  section{position:relative; z-index:1; padding:64px 0;}
-  .section-head{margin-bottom:32px;}
-  .section-head .tag{
-    font-family:var(--mono); font-size:12px; color:var(--green); margin-bottom:10px; display:block;
-  }
-  .section-head h2{
-    font-size:clamp(22px,4vw,30px); font-weight:700; letter-spacing:-0.01em; line-height:1.25;
-  }
-  .section-head p{color:var(--text-dim); margin-top:10px; max-width:56ch; font-size:15px;}
-
-  hr.rule{border:none; border-top:1px solid var(--line); margin:0;}
-
-  /* PRICING as config-style rows */
-  .price-list{
-    border:1px solid var(--line); border-radius:12px; overflow:hidden;
-    background:var(--card);
-  }
-  .price-row{
-    display:flex; align-items:center; justify-content:space-between; gap:16px;
-    padding:24px 26px;
-    border-bottom:1px solid var(--line);
-    position:relative;
-  }
-  .price-row:last-child{border-bottom:none;}
-  .price-row.best{background:linear-gradient(90deg, rgba(57,255,136,0.07), transparent 65%);}
-  .price-row.best::before{
-    content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--green);
-  }
-  .price-row .label{
-    font-family:var(--mono); font-size:12px; color:var(--text-dim); margin-bottom:6px;
-    text-transform:lowercase; letter-spacing:0.02em;
-  }
-  .price-row .duration{font-size:20px; font-weight:600; display:flex; align-items:center; flex-wrap:wrap; gap:8px;}
-  .price-row .best-flag{
-    font-family:var(--mono); font-size:11px; color:var(--yellow);
-    border:1px solid rgba(242,199,68,0.4); padding:3px 9px; border-radius:20px;
-  }
-  .price-row .amount{
-    font-family:var(--mono); font-size:25px; font-weight:700; color:var(--green);
-    white-space:nowrap;
-  }
-  .price-row .amount small{font-size:13px; color:var(--text-dim); font-weight:500; margin-left:4px;}
-
-  /* OS support badges */
-  .os-groups{display:flex; flex-direction:column; gap:20px;}
-  .os-group-label{font-family:var(--mono); font-size:12px; color:var(--text-dim); margin-bottom:10px;}
-  .os-grid{display:flex; flex-wrap:wrap; gap:10px;}
-  .os-chip{
-    display:flex; align-items:center; gap:8px;
-    font-family:var(--mono); font-size:13px;
-    background:var(--card); border:1px solid var(--line);
-    padding:11px 15px; border-radius:8px;
+  .btn-primary:hover{background:var(--maroon-dark); transform:translateY(-1px);}
+  .btn-secondary{
+    font-family:var(--sans); font-weight:600; font-size:15px;
+    background:transparent; color:var(--maroon-dark); padding:14px 26px; border-radius:7px;
+    text-decoration:none; border:1.5px solid var(--line);
     transition:border-color .15s ease;
   }
-  .os-chip:hover{border-color:var(--green-dim);}
-  .os-chip .ok{color:var(--green); font-weight:700;}
+  .btn-secondary:hover{border-color:var(--maroon);}
 
-  /* preview image card */
+  /* trust strip */
+  .trust-strip{
+    display:flex; flex-wrap:wrap; gap:10px 28px;
+    padding:22px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .trust-item{
+    display:flex; align-items:center; gap:9px;
+    font-size:13.5px; color:var(--ink-soft); font-weight:500;
+  }
+  .trust-item .ico{color:var(--maroon); font-size:15px;}
+
+  /* SECTION helpers */
+  section{padding:68px 0;}
+  .section-head{margin-bottom:36px;}
+  .section-head .eyebrow{
+    font-family:var(--sans); font-size:12.5px; font-weight:700; color:var(--maroon);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px; display:block;
+  }
+  .section-head h2{
+    font-family:var(--serif); font-size:clamp(24px,3.6vw,32px); font-weight:600;
+    letter-spacing:-0.01em; line-height:1.25; color:var(--maroon-dark);
+  }
+  .section-head p{color:var(--ink-soft); margin-top:12px; max-width:56ch; font-size:15.5px;}
+
+  .section-alt{background:var(--paper-soft);}
+  hr.rule{border:none; border-top:1px solid var(--line); margin:0;}
+
+  /* PRICING cards */
+  .price-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  .price-card{
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:30px 26px; display:flex; flex-direction:column; gap:18px;
+    position:relative;
+  }
+  .price-card.best{
+    border-color:var(--maroon); box-shadow:0 18px 40px rgba(122,31,43,0.12);
+  }
+  .price-card .flag{
+    position:absolute; top:-13px; left:26px;
+    background:var(--maroon); color:#fff; font-size:11.5px; font-weight:700;
+    padding:5px 12px; border-radius:20px; letter-spacing:0.02em;
+  }
+  .price-card .duration{
+    font-family:var(--serif); font-size:20px; font-weight:600; color:var(--ink);
+  }
+  .price-card .amount{
+    font-family:var(--serif); font-size:36px; font-weight:600; color:var(--maroon-dark);
+    line-height:1;
+  }
+  .price-card .amount sup{font-size:16px; font-weight:500; margin-right:2px; top:-0.6em;}
+  .price-card .unit{font-size:13px; color:var(--ink-soft); font-weight:500;}
+  .price-card .divider{border-top:1px solid var(--line);}
+  .price-card ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
+  .price-card li{font-size:13.5px; color:var(--ink-soft); display:flex; gap:8px; align-items:flex-start;}
+  .price-card li::before{content:"—"; color:var(--maroon); flex-shrink:0;}
+  .price-note{
+    margin-top:18px; font-size:13.5px; color:var(--ink-soft);
+    border-left:2px solid var(--maroon); padding:10px 16px; background:var(--maroon-tint);
+    border-radius:0 6px 6px 0;
+  }
+
+  /* OS support */
+  .os-groups{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .os-block{background:#fff; border:1px solid var(--line); border-radius:12px; padding:22px 24px;}
+  .os-block-title{
+    font-family:var(--serif); font-size:16px; font-weight:600; color:var(--maroon-dark); margin-bottom:14px;
+  }
+  .os-list{display:flex; flex-direction:column; gap:11px;}
+  .os-list-item{
+    display:flex; align-items:center; justify-content:space-between;
+    font-size:14px; color:var(--ink); padding-bottom:11px; border-bottom:1px solid var(--line);
+  }
+  .os-list-item:last-child{border-bottom:none; padding-bottom:0;}
+  .os-list-item .check{
+    width:19px; height:19px; border-radius:50%; background:var(--maroon-tint); color:var(--maroon);
+    display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700;
+  }
+
+  /* preview image */
   .preview-card{
-    border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--card);
+    border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#fff;
   }
+  .preview-img{width:100%; display:block; background:var(--paper-soft);}
   .preview-img-fallback{
-    aspect-ratio:16/9;
-    background:
-      repeating-linear-gradient(135deg, rgba(57,255,136,0.06) 0 2px, transparent 2px 14px),
-      #0D1210;
+    aspect-ratio:16/9; background:var(--maroon-tint);
     display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
-    color:var(--text-dim); font-family:var(--mono); font-size:13px; text-align:center; padding:24px;
+    color:var(--ink-soft); font-size:13.5px; text-align:center; padding:24px;
   }
-  .preview-img-fallback .icon{font-size:34px; color:var(--green);}
-  .preview-caption{padding:16px 18px; font-size:14px; color:var(--text-dim); border-top:1px solid var(--line);}
-  .preview-img{width:100%; display:block; background:#0D1210;}
+  .preview-img-fallback .icon{font-size:30px; color:var(--maroon);}
+  .preview-caption{padding:18px 20px; font-size:14px; color:var(--ink-soft); border-top:1px solid var(--line);}
 
-  /* Install command block */
+  /* steps */
+  .steps{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#fff;}
+  .step{display:flex; gap:20px; padding:24px 26px; border-bottom:1px solid var(--line);}
+  .step:last-child{border-bottom:none;}
+  .step .n{
+    font-family:var(--serif); color:var(--maroon); font-weight:700; font-size:22px; min-width:34px;
+  }
+  .step .t{font-weight:600; margin-bottom:5px; font-size:15.5px; color:var(--ink);}
+  .step .d{color:var(--ink-soft); font-size:14px;}
+
+  /* code block - dark contrast against white theme */
   .code-block{
-    background:#080B0A; border:1px solid var(--line); border-radius:12px; overflow:hidden;
+    background:var(--maroon-dark); border-radius:14px; overflow:hidden;
+    box-shadow:0 20px 44px rgba(74,17,25,0.18);
   }
   .code-block-bar{
     display:flex; align-items:center; justify-content:space-between;
-    padding:10px 14px; background:var(--bg-raised); border-bottom:1px solid var(--line);
+    padding:13px 18px; background:rgba(0,0,0,0.18);
   }
-  .code-block-bar span{font-family:var(--mono); font-size:12px; color:var(--text-dim);}
+  .code-block-bar span{font-family:var(--mono); font-size:12px; color:rgba(255,255,255,0.6);}
   .copy-btn{
-    font-family:var(--mono); font-size:12px; font-weight:600;
-    background:transparent; color:var(--green); border:1px solid var(--green-dim);
-    padding:6px 12px; border-radius:6px; cursor:pointer;
-    transition:background .15s ease, color .15s ease;
+    font-family:var(--sans); font-size:12.5px; font-weight:600;
+    background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.25);
+    padding:7px 14px; border-radius:6px; cursor:pointer;
+    transition:background .15s ease;
   }
-  .copy-btn:hover{background:var(--green); color:#06120B;}
-  .copy-btn:focus-visible, .cta-mini:focus-visible, .wa-float:focus-visible{outline:2px solid var(--green); outline-offset:2px;}
+  .copy-btn:hover{background:rgba(255,255,255,0.2);}
+  .copy-btn:focus-visible, .cta-mini:focus-visible, .wa-float:focus-visible, .btn-primary:focus-visible{outline:2px solid var(--maroon); outline-offset:2px;}
   pre.code{
-    padding:20px; font-family:var(--mono); font-size:12.5px; line-height:1.8;
-    color:#B9F5CF; overflow-x:auto; white-space:pre;
+    padding:22px; font-family:var(--mono); font-size:12.5px; line-height:1.85;
+    color:#F3D9DB; overflow-x:auto; white-space:pre;
   }
   .note-box{
-    margin-top:14px; font-size:13px; color:var(--text-dim);
-    border-left:2px solid var(--green-dim); padding:10px 14px; background:rgba(57,255,136,0.03);
+    margin-top:16px; font-size:13.5px; color:var(--ink-soft);
+    border-left:2px solid var(--maroon); padding:12px 16px; background:var(--maroon-tint);
+    border-radius:0 6px 6px 0;
   }
-
-  /* steps */
-  .steps{display:flex; flex-direction:column; gap:0; margin-top:4px; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--card);}
-  .step{
-    display:flex; gap:16px; padding:20px 22px; border-bottom:1px solid var(--line);
-  }
-  .step:last-child{border-bottom:none;}
-  .step .n{
-    font-family:var(--mono); color:var(--green); font-weight:700; font-size:14px; min-width:24px; padding-top:1px;
-  }
-  .step .t{font-weight:600; margin-bottom:4px; font-size:15px;}
-  .step .d{color:var(--text-dim); font-size:14px;}
 
   /* FAQ */
-  details{
-    border-bottom:1px solid var(--line); padding:16px 0;
-  }
+  details{border-bottom:1px solid var(--line); padding:20px 0;}
   details summary{
     cursor:pointer; font-weight:600; list-style:none; display:flex; justify-content:space-between; align-items:center;
+    font-size:15.5px; color:var(--ink);
   }
   details summary::-webkit-details-marker{display:none;}
   details summary::after{
-    content:"+"; font-family:var(--mono); color:var(--green); font-size:18px; margin-left:12px;
+    content:"+"; color:var(--maroon); font-size:20px; margin-left:12px; font-weight:400;
   }
   details[open] summary::after{content:"–";}
-  details p{color:var(--text-dim); margin-top:10px; font-size:14px; max-width:60ch;}
+  details p{color:var(--ink-soft); margin-top:12px; font-size:14.5px; max-width:60ch;}
 
   /* contact */
   .contact-card{
-    background:var(--card); border:1px solid var(--line); border-radius:12px;
-    padding:30px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+    background:var(--maroon); border-radius:16px;
+    padding:36px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+    color:#fff;
   }
-  .contact-card .who{font-family:var(--mono); font-size:12px; color:var(--text-dim); margin-bottom:7px;}
-  .contact-card .num{font-size:23px; font-weight:700; letter-spacing:0.01em; font-family:var(--mono);}
+  .contact-card .who{font-size:13px; color:rgba(255,255,255,0.75); margin-bottom:8px; font-weight:500;}
+  .contact-card .num{font-family:var(--serif); font-size:25px; font-weight:600;}
   .wa-btn{
-    font-family:var(--mono); font-weight:700; font-size:14px;
-    background:var(--green); color:#06120B; padding:13px 22px; border-radius:8px;
+    font-family:var(--sans); font-weight:700; font-size:14.5px;
+    background:#fff; color:var(--maroon-dark); padding:14px 24px; border-radius:8px;
     text-decoration:none; white-space:nowrap;
-    transition:transform .15s ease, box-shadow .15s ease;
+    transition:transform .15s ease;
   }
-  .wa-btn:hover{transform:translateY(-1px); box-shadow:0 6px 18px rgba(57,255,136,0.25);}
+  .wa-btn:hover{transform:translateY(-1px);}
 
   footer{
-    border-top:1px solid var(--line); padding:28px 0 100px;
-    font-size:13px; color:var(--text-dim); text-align:center;
-    font-family:var(--mono);
+    border-top:1px solid var(--line); padding:32px 0 110px;
+    font-size:13px; color:var(--ink-soft); text-align:center;
   }
 
   .wa-float{
-    position:fixed; bottom:20px; right:20px; z-index:60;
-    background:var(--green); color:#06120B;
-    width:56px; height:56px; border-radius:50%;
+    position:fixed; bottom:22px; right:22px; z-index:60;
+    background:var(--maroon); color:#fff;
+    width:58px; height:58px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
-    text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    text-decoration:none; box-shadow:0 10px 28px rgba(122,31,43,0.35);
     font-size:26px;
   }
 
+  @media (max-width:760px){
+    .price-grid{grid-template-columns:1fr;}
+    .os-groups{grid-template-columns:1fr;}
+  }
   @media (max-width:640px){
-    .price-row{flex-direction:column; align-items:flex-start; gap:8px;}
-    .price-row .amount{font-size:22px;}
     .contact-card{flex-direction:column; align-items:flex-start;}
+    .hero-actions{flex-direction:column;}
+    .btn-primary,.btn-secondary{text-align:center;}
   }
 </style>
 </head>
@@ -295,97 +290,115 @@
 
 <header>
   <div class="nav">
-    <div class="brand"><span class="dot"></span>zoy@tunneling</div>
-    <a class="cta-mini" href="#harga">Lihat harga</a>
+    <div class="brand"><span class="mark">Z</span>Zoy Tunneling</div>
+    <a class="cta-mini" href="#kontak">Hubungi admin</a>
   </div>
 </header>
 
 <main class="wrap">
 
   <section class="hero">
-    <div class="eyebrow-line"><span class="blink"></span> root@server:~# status — online, siap deploy</div>
-    <h1>Autoscript install VPS, <span>tinggal sewa per IP.</span></h1>
-    <p class="lede">Zoy Tunneling menyewakan akses autoscript untuk setup VPS tunneling dalam sekali jalan. Support Debian 10–13 dan Ubuntu 20, 22, 24, 25. Bayar per IP, bukan langganan ribet.</p>
+    <div class="hero-top">
+      <span class="badge">Autoscript install VPS</span>
+    </div>
+    <h1>Sewa autoscript VPS, rapi dan siap pakai per IP.</h1>
+    <p class="lede">Zoy Tunneling menyediakan akses autoscript untuk setup VPS tunneling dalam sekali jalan. Mendukung Debian 10–13 dan Ubuntu 20, 22, 24, 25. Bayar per IP, bukan langganan yang ribet.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#harga">Lihat harga sewa</a>
+      <a class="btn-secondary" href="#kontak">Chat admin</a>
+    </div>
 
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span></span><span></span><span></span>
-        <span class="path">/root/zoy-tunneling</span>
-      </div>
-      <div class="terminal-body" id="typedTerminal"></div>
+    <div class="trust-strip">
+      <div class="trust-item"><span class="ico">✓</span> Support 8 versi OS</div>
+      <div class="trust-item"><span class="ico">✓</span> Aktivasi cepat via admin</div>
+      <div class="trust-item"><span class="ico">✓</span> Harga per IP, transparan</div>
     </div>
   </section>
-
-  <hr class="rule">
 
   <section id="harga">
     <div class="section-head">
-      <span class="tag">// pricing</span>
-      <h2>Harga sewa per IP</h2>
-      <p>Satu harga untuk satu IP VPS. Makin lama durasi, makin hemat per bulannya.</p>
+      <span class="eyebrow">Harga sewa</span>
+      <h2>Satu harga jelas, per IP</h2>
+      <p>Pilih durasi sewa yang sesuai. Makin panjang durasi, makin hemat biaya per bulannya.</p>
     </div>
 
-    <div class="price-list">
-      <div class="price-row">
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="duration">1 Bulan</div>
         <div>
-          <div class="label">durasi</div>
-          <div class="duration">1 bulan</div>
+          <div class="amount"><sup>Rp</sup>15.000</div>
+          <div class="unit">per IP VPS</div>
         </div>
-        <div class="amount">15.000<small>/IP</small></div>
+        <div class="divider"></div>
+        <ul>
+          <li>Akses autoscript penuh</li>
+          <li>Support Debian &amp; Ubuntu</li>
+          <li>Aktivasi via admin</li>
+        </ul>
       </div>
-      <div class="price-row">
+      <div class="price-card">
+        <div class="duration">2 Bulan</div>
         <div>
-          <div class="label">durasi</div>
-          <div class="duration">2 bulan</div>
+          <div class="amount"><sup>Rp</sup>25.000</div>
+          <div class="unit">per IP VPS</div>
         </div>
-        <div class="amount">25.000<small>/IP</small></div>
+        <div class="divider"></div>
+        <ul>
+          <li>Akses autoscript penuh</li>
+          <li>Support Debian &amp; Ubuntu</li>
+          <li>Aktivasi via admin</li>
+        </ul>
       </div>
-      <div class="price-row best">
+      <div class="price-card best">
+        <div class="flag">Paling hemat</div>
+        <div class="duration">3 Bulan</div>
         <div>
-          <div class="label">durasi</div>
-          <div class="duration">3 bulan <span class="best-flag">paling hemat</span></div>
+          <div class="amount"><sup>Rp</sup>35.000</div>
+          <div class="unit">per IP VPS</div>
         </div>
-        <div class="amount">35.000<small>/IP</small></div>
+        <div class="divider"></div>
+        <ul>
+          <li>Akses autoscript penuh</li>
+          <li>Support Debian &amp; Ubuntu</li>
+          <li>Aktivasi via admin</li>
+          <li>Harga per bulan paling rendah</li>
+        </ul>
       </div>
     </div>
-    <div class="note-box">Harga berlaku per 1 alamat IP VPS. Untuk sewa banyak IP sekaligus, hubungi admin untuk penyesuaian.</div>
+    <div class="price-note">Harga berlaku per 1 alamat IP VPS. Untuk sewa banyak IP sekaligus, hubungi admin untuk penyesuaian harga.</div>
   </section>
 
-  <hr class="rule">
-
-  <section>
+  <section class="section-alt">
     <div class="section-head">
-      <span class="tag">// compatibility</span>
+      <span class="eyebrow">Kompatibilitas</span>
       <h2>OS yang didukung</h2>
       <p>Autoscript sudah diuji jalan mulus di distro berikut.</p>
     </div>
     <div class="os-groups">
-      <div>
-        <div class="os-group-label">debian</div>
-        <div class="os-grid">
-          <div class="os-chip"><span class="ok">✓</span> Debian 10</div>
-          <div class="os-chip"><span class="ok">✓</span> Debian 11</div>
-          <div class="os-chip"><span class="ok">✓</span> Debian 12</div>
-          <div class="os-chip"><span class="ok">✓</span> Debian 13</div>
+      <div class="os-block">
+        <div class="os-block-title">Debian</div>
+        <div class="os-list">
+          <div class="os-list-item">Debian 10 <span class="check">✓</span></div>
+          <div class="os-list-item">Debian 11 <span class="check">✓</span></div>
+          <div class="os-list-item">Debian 12 <span class="check">✓</span></div>
+          <div class="os-list-item">Debian 13 <span class="check">✓</span></div>
         </div>
       </div>
-      <div>
-        <div class="os-group-label">ubuntu</div>
-        <div class="os-grid">
-          <div class="os-chip"><span class="ok">✓</span> Ubuntu 20</div>
-          <div class="os-chip"><span class="ok">✓</span> Ubuntu 22</div>
-          <div class="os-chip"><span class="ok">✓</span> Ubuntu 24</div>
-          <div class="os-chip"><span class="ok">✓</span> Ubuntu 25</div>
+      <div class="os-block">
+        <div class="os-block-title">Ubuntu</div>
+        <div class="os-list">
+          <div class="os-list-item">Ubuntu 20 <span class="check">✓</span></div>
+          <div class="os-list-item">Ubuntu 22 <span class="check">✓</span></div>
+          <div class="os-list-item">Ubuntu 24 <span class="check">✓</span></div>
+          <div class="os-list-item">Ubuntu 25 <span class="check">✓</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <hr class="rule">
-
   <section>
     <div class="section-head">
-      <span class="tag">// preview</span>
+      <span class="eyebrow">Preview</span>
       <h2>Tampilan autoscript</h2>
       <p>Pratinjau menu instalasi setelah script dijalankan di VPS.</p>
     </div>
@@ -404,18 +417,16 @@
     </div>
   </section>
 
-  <hr class="rule">
-
-  <section>
+  <section class="section-alt">
     <div class="section-head">
-      <span class="tag">// cara pakai</span>
+      <span class="eyebrow">Cara pakai</span>
       <h2>3 langkah install</h2>
     </div>
     <div class="steps">
       <div class="step">
         <div class="n">01</div>
         <div>
-          <div class="t">Hubungi admin & lakukan pembayaran</div>
+          <div class="t">Hubungi admin &amp; lakukan pembayaran</div>
           <div class="d">Pilih durasi sewa (1/2/3 bulan), transfer sesuai harga, admin akan aktifkan akses IP kamu.</div>
         </div>
       </div>
@@ -435,11 +446,11 @@
       </div>
     </div>
 
-    <div style="margin-top:24px;">
+    <div style="margin-top:28px;">
       <div class="code-block">
         <div class="code-block-bar">
           <span>install.sh</span>
-          <button class="copy-btn" id="copyBtn">copy</button>
+          <button class="copy-btn" id="copyBtn">Salin</button>
         </div>
         <pre class="code" id="installCode">sysctl -w net.ipv6.conf.all.disable_ipv6=1 &amp;&amp; \
 sysctl -w net.ipv6.conf.default.disable_ipv6=1 &amp;&amp; \
@@ -454,11 +465,9 @@ chmod +x mahbub &amp;&amp; \
     </div>
   </section>
 
-  <hr class="rule">
-
   <section>
     <div class="section-head">
-      <span class="tag">// faq</span>
+      <span class="eyebrow">FAQ</span>
       <h2>Pertanyaan umum</h2>
     </div>
 
@@ -480,17 +489,15 @@ chmod +x mahbub &amp;&amp; \
     </details>
   </section>
 
-  <hr class="rule">
-
   <section id="kontak">
     <div class="section-head">
-      <span class="tag">// kontak</span>
+      <span class="eyebrow">Kontak</span>
       <h2>Hubungi admin</h2>
       <p>Untuk pemesanan, aktivasi IP, atau pertanyaan seputar autoscript.</p>
     </div>
     <div class="contact-card">
       <div>
-        <div class="who">admin zoy tunneling</div>
+        <div class="who">Admin Zoy Tunneling</div>
         <div class="num">0838-7714-0463</div>
       </div>
       <a class="wa-btn" href="https://wa.me/6283877140463" target="_blank" rel="noopener">Chat via WhatsApp</a>
@@ -502,51 +509,16 @@ chmod +x mahbub &amp;&amp; \
 <a class="wa-float" href="https://wa.me/6283877140463" target="_blank" rel="noopener" aria-label="Chat WhatsApp admin">💬</a>
 
 <footer>
-  zoy tunneling — sewa autoscript install vps · dibuat untuk kebutuhan operasional, bukan disertai jaminan hukum atau layanan pihak ketiga
+  Zoy Tunneling — sewa autoscript install VPS · dibuat untuk kebutuhan operasional, bukan disertai jaminan hukum atau layanan pihak ketiga
 </footer>
 
 <script>
-  // typing animation in hero terminal — single orchestrated moment
-  const el = document.getElementById('typedTerminal');
-  const lines = [
-    {text: '$ ssh root@your-vps-ip', cls:'prompt'},
-    {text: '# menjalankan autoscript zoy tunneling...', cls:'comment'},
-    {text: '$ ./mahbub', cls:'prompt'},
-    {text: '# instalasi selesai. VPS siap dipakai ✓', cls:'comment'},
-  ];
-  let li=0, ci=0;
-  function typeLine(){
-    if(li>=lines.length){
-      el.innerHTML += '<span class="caret"></span>';
-      return;
-    }
-    const line = lines[li];
-    if(ci===0){
-      el.innerHTML += `<div><span class="${line.cls}">`;
-    }
-    if(ci<line.text.length){
-      el.innerHTML = el.innerHTML.slice(0,-0);
-      // append char safely
-      const container = el.querySelectorAll('div');
-      const last = container[container.length-1];
-      last.querySelector('span').textContent += line.text[ci];
-      ci++;
-      setTimeout(typeLine, 18+Math.random()*22);
-    } else {
-      el.innerHTML += '</div>';
-      li++; ci=0;
-      setTimeout(typeLine, 260);
-    }
-  }
-  setTimeout(typeLine, 400);
-
-  // copy button
   document.getElementById('copyBtn').addEventListener('click', function(){
     const raw = document.getElementById('installCode').innerText;
     navigator.clipboard.writeText(raw).then(()=>{
       const btn = document.getElementById('copyBtn');
       const old = btn.textContent;
-      btn.textContent = 'copied!';
+      btn.textContent = 'Tersalin!';
       setTimeout(()=>{btn.textContent = old;}, 1600);
     });
   });
