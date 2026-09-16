@@ -28,6 +28,7 @@
 
             <!-- Navigation Links -->
             <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-cyan-400 transition">Tentang</a>
                 <a href="#features" class="hover:text-cyan-400 transition">Fitur</a>
                 <a href="#pricing" class="hover:text-cyan-400 transition">Harga</a>
                 <a href="#os-support" class="hover:text-cyan-400 transition">OS Support</a>
@@ -76,6 +77,42 @@
                         <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-md opacity-20 -z-10"></div>
                         <img src="https://raw.githubusercontent.com/joytun21/joy/main/image/onta.jpg" alt="Joy Tunneling Autoscript" class="rounded-xl w-full h-auto object-cover shadow-inner">
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Explanation Section -->
+    <section id="about" class="py-16 bg-slate-900/30 border-t border-slate-800/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-3">Apa itu Autoscript Joy Tunneling?</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Sistem otomatisasi server tingkat lanjut yang dirancang khusus untuk memudahkan pengelolaan VPS tunneling tanpa ribet.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-900/80 border border-slate-800/80 p-6 rounded-2xl space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-200">Instalasi Super Cepat</h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Hanya butuh 1 baris perintah (command), seluruh komponen server, web server, hingga modul keamanan terpasang otomatis dalam hitungan menit.</p>
+                </div>
+
+                <div class="bg-slate-900/80 border border-slate-800/80 p-6 rounded-2xl space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-200">Support SSL & Domain</h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Dilengkapi manajemen sertifikat SSL otomatis (Let's Encrypt) yang terhubung langsung dengan domain pribadi Anda untuk koneksi yang aman.</p>
+                </div>
+
+                <div class="bg-slate-900/80 border border-slate-800/80 p-6 rounded-2xl space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-200">Manajemen Mudah</h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Dilengkapi menu panel interaktif di terminal untuk memantau status server, membuat akun, hingga memperbarui sistem dengan sangat mudah.</p>
                 </div>
             </div>
         </div>
@@ -199,41 +236,65 @@
         </div>
     </section>
 
-    <!-- Installation Command Section -->
+    <!-- Installation Command & Domain Requirement Section -->
     <section id="install" class="py-16 bg-slate-900/40 border-t border-slate-800/60">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10">
                 <h2 class="text-2xl sm:text-3xl font-bold mb-2.5">Panduan & Cara Instalasi</h2>
-                <p class="text-slate-400 text-sm sm:text-base">Ikuti langkah-langkah mudah di bawah ini untuk memasang autoscript pada VPS Anda.</p>
+                <p class="text-slate-400 text-sm sm:text-base">Ikuti tahapan penting di bawah ini sebelum menjalankan script pada VPS Anda.</p>
+            </div>
+
+            <!-- Important Domain Notice Box -->
+            <div class="bg-cyan-950/40 border border-cyan-500/30 rounded-2xl p-5 sm:p-6 mb-8 relative">
+                <div class="flex items-start space-x-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 flex-shrink-0 mt-0.5">
+                        <i class="fa-solid fa-globe text-lg"></i>
+                    </div>
+                    <div class="space-y-1.5">
+                        <h3 class="font-bold text-sm sm:text-base text-cyan-300">Wajib Memiliki & Mempointing Domain!</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                            Sebelum melakukan instalasi script, Anda <strong>wajib</strong> menyiapkan domain sendiri (misal di Cloudflare / ClouDNS) dan mengarahkan (pointing) DNS A record domain tersebut ke alamat IP VPS Anda. Domain ini nantinya dibutuhkan untuk konfigurasi SSL dan protokol server.
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <!-- Step-by-Step Guide Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-8">
                 <!-- Step 1 -->
-                <div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl flex flex-col items-text text-center sm:text-left space-y-2">
-                    <div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center mx-auto sm:mx-0 text-sm">
+                <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl flex flex-col space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center text-xs">
                         01
                     </div>
-                    <h3 class="font-bold text-sm sm:text-base text-slate-200">Daftarkan IP VPS</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Pesan paket dan kirimkan alamat IP VPS Anda ke Admin WhatsApp agar lisensi aktif.</p>
+                    <h3 class="font-bold text-sm text-slate-200">Pointing Domain</h3>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">Arahkan domain Anda ke IP VPS yang ingin digunakan.</p>
                 </div>
 
                 <!-- Step 2 -->
-                <div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl flex flex-col items-text text-center sm:text-left space-y-2">
-                    <div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center mx-auto sm:mx-0 text-sm">
+                <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl flex flex-col space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center text-xs">
                         02
                     </div>
-                    <h3 class="font-bold text-sm sm:text-base text-slate-200">Login Terminal</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Akses VPS Anda menggunakan aplikasi SSH client (seperti PuTTY atau JuiceSSH) sebagai root.</p>
+                    <h3 class="font-bold text-sm text-slate-200">Daftar Lisensi</h3>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">Kirim IP VPS ke Admin WhatsApp agar lisensi aktif.</p>
                 </div>
 
                 <!-- Step 3 -->
-                <div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl flex flex-col items-text text-center sm:text-left space-y-2">
-                    <div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center mx-auto sm:mx-0 text-sm">
+                <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl flex flex-col space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center text-xs">
                         03
                     </div>
-                    <h3 class="font-bold text-sm sm:text-base text-slate-200">Jalankan Script</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Salin script di bawah ini, tempelkan ke terminal VPS Anda, lalu tekan Enter dan ikuti instruksinya.</p>
+                    <h3 class="font-bold text-sm text-slate-200">Login SSH</h3>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">Akses terminal VPS Anda menggunakan akses root.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl flex flex-col space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center text-xs">
+                        04
+                    </div>
+                    <h3 class="font-bold text-sm text-slate-200">Jalankan Script</h3>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">Tempel command script dan ikuti panduan di layar.</p>
                 </div>
             </div>
 
