@@ -21,8 +21,6 @@
     --green:#33F17A;
     --green-dim:#1F7A45;
     --green-tint:rgba(51,241,122,0.08);
-    --blue:#2C4CF0;
-    --blue-tint:rgba(44,76,240,0.12);
     --amber:#F0C93A;
     --amber-dim:#8A7521;
     --ink:#E7F2E9;
@@ -141,34 +139,33 @@
   .section-alt{background:var(--bg-soft); border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);}
 
   /* PRICING cards */
-  .price-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .price-grid{display:grid; grid-template-columns:1fr; gap:14px;}
   .price-card{
     background:var(--panel); border:1px solid var(--line-soft); border-radius:12px;
-    padding:26px 22px; display:flex; flex-direction:column; gap:16px;
+    padding:22px 22px; display:flex; align-items:center; justify-content:space-between; gap:18px;
     position:relative;
   }
   .price-card.best{
-    border-color:var(--green-dim); box-shadow:0 0 0 1px var(--green-dim), 0 18px 40px rgba(51,241,122,0.06);
+    border-color:var(--green); background:var(--green-tint);
   }
   .price-card .flag{
-    position:absolute; top:-12px; left:22px;
-    background:var(--green); color:var(--bg); font-size:11px; font-weight:700;
-    padding:5px 12px; border-radius:20px; letter-spacing:0.02em; font-family:var(--mono);
+    position:absolute; top:-11px; left:22px;
+    background:var(--green); color:var(--bg); font-size:10.5px; font-weight:700;
+    padding:4px 11px; border-radius:20px; letter-spacing:0.03em; font-family:var(--mono);
   }
+  .price-card .left{display:flex; flex-direction:column; gap:6px;}
   .price-card .duration{
-    font-family:var(--mono); font-size:14px; font-weight:600; color:var(--ink-soft);
-    text-transform:uppercase; letter-spacing:0.05em;
+    font-family:var(--mono); font-size:13px; font-weight:600; color:var(--ink-soft);
+    text-transform:uppercase; letter-spacing:0.06em;
   }
+  .price-card .feat{font-size:12.5px; color:var(--ink-faint);}
+  .price-card .right{text-align:right; flex-shrink:0;}
   .price-card .amount{
-    font-family:var(--serif); font-size:32px; font-weight:600; color:var(--ink);
-    line-height:1;
+    font-family:var(--serif); font-size:26px; font-weight:600; color:var(--ink);
+    line-height:1.1; white-space:nowrap;
   }
-  .price-card .amount sup{font-size:15px; font-weight:500; margin-right:2px; top:-0.6em; color:var(--green);}
-  .price-card .unit{font-size:12.5px; color:var(--ink-faint); font-weight:500;}
-  .price-card .divider{border-top:1px solid var(--line-soft);}
-  .price-card ul{list-style:none; display:flex; flex-direction:column; gap:9px;}
-  .price-card li{font-size:13px; color:var(--ink-soft); display:flex; gap:8px; align-items:flex-start;}
-  .price-card li::before{content:"›"; color:var(--green); flex-shrink:0; font-weight:700;}
+  .price-card .amount sup{font-size:13px; font-weight:500; margin-right:2px; color:var(--green);}
+  .price-card .unit{font-size:11.5px; color:var(--ink-faint); font-weight:500; margin-top:2px;}
   .price-note{
     margin-top:16px; font-size:13px; color:var(--ink-soft); font-family:var(--mono);
     border-left:2px solid var(--amber); padding:10px 16px; background:rgba(240,201,58,0.06);
@@ -176,22 +173,23 @@
   }
 
   /* OS support */
-  .os-groups{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
-  .os-block{background:var(--panel); border:1px solid var(--line-soft); border-radius:12px; padding:20px 22px;}
+  .os-groups{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .os-block{background:var(--panel); border:1px solid var(--line-soft); border-radius:12px; padding:18px 20px;}
   .os-block-title{
-    font-family:var(--mono); font-size:14px; font-weight:700; color:var(--blue-tint); margin-bottom:14px;
-    color:#6E8AFF; text-transform:uppercase; letter-spacing:0.05em;
+    font-family:var(--mono); font-size:13px; font-weight:700; color:var(--green);
+    margin-bottom:13px; text-transform:uppercase; letter-spacing:0.06em;
   }
-  .os-list{display:flex; flex-direction:column; gap:10px;}
+  .os-list{display:flex; flex-direction:column; gap:9px;}
   .os-list-item{
     display:flex; align-items:center; justify-content:space-between;
-    font-size:13.5px; color:var(--ink); font-family:var(--mono);
-    padding-bottom:10px; border-bottom:1px solid var(--line-soft);
+    font-size:13px; color:var(--ink); font-family:var(--mono);
+    padding-bottom:9px; border-bottom:1px solid var(--line-soft);
   }
   .os-list-item:last-child{border-bottom:none; padding-bottom:0;}
   .os-list-item .check{
-    width:18px; height:18px; border-radius:50%; background:var(--green-tint); color:var(--green);
+    width:17px; height:17px; border-radius:50%; background:var(--green-tint); color:var(--green);
     display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700;
+    flex-shrink:0;
   }
 
   /* preview image — framed to match its own terminal palette */
@@ -276,17 +274,8 @@
   .wa-btn:hover{transform:translateY(-1px);}
 
   footer{
-    border-top:1px solid var(--line-soft); padding:28px 0 100px;
+    border-top:1px solid var(--line-soft); padding:28px 0 60px;
     font-size:12.5px; color:var(--ink-faint); text-align:center; font-family:var(--mono);
-  }
-
-  .wa-float{
-    position:fixed; bottom:20px; right:20px; z-index:60;
-    background:var(--green); color:var(--bg);
-    width:54px; height:54px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    text-decoration:none; box-shadow:0 10px 28px rgba(51,241,122,0.35);
-    font-size:24px;
   }
 
   @media (max-width:760px){
@@ -320,7 +309,6 @@
     <p class="lede">Zoy Tunneling menyediakan akses autoscript untuk setup VPS tunneling dalam sekali jalan. Mendukung Debian 10–13 dan Ubuntu 20, 22, 24, 25. Bayar per IP, bukan langganan yang ribet.</p>
     <div class="hero-actions">
       <a class="btn-primary" href="#harga">Lihat harga sewa</a>
-      <a class="btn-secondary" href="#kontak">Chat admin</a>
     </div>
 
     <div class="trust-strip">
@@ -339,45 +327,35 @@
 
     <div class="price-grid">
       <div class="price-card">
-        <div class="duration">1 Bulan</div>
-        <div>
+        <div class="left">
+          <div class="duration">1 Bulan</div>
+          <div class="feat">Akses autoscript penuh · aktivasi via admin</div>
+        </div>
+        <div class="right">
           <div class="amount"><sup>Rp</sup>15.000</div>
           <div class="unit">per IP VPS</div>
         </div>
-        <div class="divider"></div>
-        <ul>
-          <li>Akses autoscript penuh</li>
-          <li>Support Debian &amp; Ubuntu</li>
-          <li>Aktivasi via admin</li>
-        </ul>
       </div>
       <div class="price-card">
-        <div class="duration">2 Bulan</div>
-        <div>
+        <div class="left">
+          <div class="duration">2 Bulan</div>
+          <div class="feat">Akses autoscript penuh · aktivasi via admin</div>
+        </div>
+        <div class="right">
           <div class="amount"><sup>Rp</sup>25.000</div>
           <div class="unit">per IP VPS</div>
         </div>
-        <div class="divider"></div>
-        <ul>
-          <li>Akses autoscript penuh</li>
-          <li>Support Debian &amp; Ubuntu</li>
-          <li>Aktivasi via admin</li>
-        </ul>
       </div>
       <div class="price-card best">
         <div class="flag">Paling hemat</div>
-        <div class="duration">3 Bulan</div>
-        <div>
+        <div class="left">
+          <div class="duration">3 Bulan</div>
+          <div class="feat">Akses autoscript penuh · harga/bulan paling rendah</div>
+        </div>
+        <div class="right">
           <div class="amount"><sup>Rp</sup>35.000</div>
           <div class="unit">per IP VPS</div>
         </div>
-        <div class="divider"></div>
-        <ul>
-          <li>Akses autoscript penuh</li>
-          <li>Support Debian &amp; Ubuntu</li>
-          <li>Aktivasi via admin</li>
-          <li>Harga per bulan paling rendah</li>
-        </ul>
       </div>
     </div>
     <div class="price-note">Harga berlaku per 1 alamat IP VPS. Untuk sewa banyak IP sekaligus, hubungi admin untuk penyesuaian harga.</div>
@@ -520,8 +498,6 @@ chmod +x mahbub &amp;&amp; \
   </section>
 
 </main>
-
-<a class="wa-float" href="https://wa.me/6283877140463" target="_blank" rel="noopener" aria-label="Chat WhatsApp admin">💬</a>
 
 <footer>
   Zoy Tunneling — sewa autoscript install VPS · dibuat untuk kebutuhan operasional, bukan disertai jaminan hukum atau layanan pihak ketiga
