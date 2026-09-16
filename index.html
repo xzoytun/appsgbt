@@ -412,98 +412,83 @@
         </div>
     </section>
 
-    <!-- Installation Command & Domain Requirement Section -->
-    <section id="install" class="py-16 bg-slate-900/40 border-t border-slate-800/60 scroll-mt-24">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10">
-                <h2 class="text-2xl sm:text-3xl font-bold mb-2.5">Panduan & Cara Instalasi</h2>
-                <p class="text-slate-400 text-sm sm:text-base">Ikuti tahapan penting di bawah ini sebelum menjalankan script pada VPS Anda.</p>
+        <!-- Installation Command & Domain Requirement Section -->
+    <section id="install" class="py-12 bg-slate-900/40 border-t border-slate-800/60 scroll-mt-24">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-2">Panduan & Cara Instalasi</h2>
+                <p class="text-slate-400 text-xs sm:text-sm">Ikuti tahapan penting di bawah ini sebelum menjalankan script pada VPS Anda.</p>
             </div>
 
             <!-- Warning Box -->
-            <div class="bg-amber-950/30 border border-amber-500/40 rounded-2xl p-5 sm:p-6 mb-6 relative">
-                <div class="flex items-start space-x-3.5">
-                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 flex-shrink-0 mt-0.5">
-                        <i class="fa-solid fa-triangle-exclamation text-lg"></i>
+            <div class="bg-amber-950/30 border border-amber-500/40 rounded-xl p-4 mb-5">
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 flex-shrink-0 mt-0.5">
+                        <i class="fa-solid fa-triangle-exclamation text-sm"></i>
                     </div>
-                    <div class="space-y-1.5">
-                        <h3 class="font-bold text-sm sm:text-base text-amber-300">Peringatan Penting Sebelum Install!</h3>
-                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                            Pastikan VPS Anda menggunakan sistem operasi <strong>Fresh Install</strong> (bersih tanpa panel lain, skrip lama, atau konfigurasi web server yang bertabrakan). Kesalahan pada sistem yang sudah terisi aplikasi lain dapat menyebabkan kegagalan instalasi skrip.
+                    <div class="space-y-1">
+                        <h3 class="font-bold text-xs sm:text-sm text-amber-300">Peringatan Penting Sebelum Install!</h3>
+                        <p class="text-[11px] sm:text-xs text-slate-300 leading-relaxed">
+                            Pastikan VPS Anda menggunakan sistem operasi <strong>Fresh Install</strong> (bersih tanpa panel lain, skrip lama, atau konfigurasi web server yang bertabrakan).
                         </p>
                     </div>
                 </div>
             </div>
 
             <!-- Important Domain Notice Box -->
-            <div class="bg-cyan-950/40 border border-cyan-500/30 rounded-2xl p-5 sm:p-6 mb-8 relative">
-                <div class="flex items-start space-x-3.5">
-                    <div class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 flex-shrink-0 mt-0.5">
-                        <i class="fa-solid fa-globe text-lg"></i>
+            <div class="bg-cyan-950/40 border border-cyan-500/30 rounded-xl p-4 mb-6">
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 flex-shrink-0 mt-0.5">
+                        <i class="fa-solid fa-globe text-sm"></i>
                     </div>
-                    <div class="space-y-1.5">
-                        <h3 class="font-bold text-sm sm:text-base text-cyan-300">Wajib Memiliki & Mempointing Domain!</h3>
-                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                            Sebelum instalasi, Anda <strong>wajib</strong> menyiapkan domain sendiri (Cloudflare/ClouDNS) dan mengarahkan (pointing) DNS A record domain tersebut ke alamat IP VPS Anda untuk pembuatan sertifikat SSL.
+                    <div class="space-y-1">
+                        <h3 class="font-bold text-xs sm:text-sm text-cyan-300">Wajib Memiliki & Mempointing Domain!</h3>
+                        <p class="text-[11px] sm:text-xs text-slate-300 leading-relaxed">
+                            Sebelum instalasi, Anda <strong>wajib</strong> menyiapkan domain sendiri dan mengarahkan DNS A record ke alamat IP VPS Anda.
                         </p>
                     </div>
                 </div>
             </div>
 
             <!-- Step-by-Step Guide Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-8">
-                <!-- Step 1 -->
-                <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl flex flex-col space-y-2">
-                    <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center text-xs">
-                        01
-                    </div>
-                    <h3 class="font-bold text-sm text-slate-200">Pointing Domain</h3>
-                    <p class="text-[11px] text-slate-400 leading-relaxed">Arahkan domain ke IP VPS Anda.</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-xl flex flex-col space-y-1.5">
+                    <div class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center text-xs">01</div>
+                    <h3 class="font-bold text-xs text-slate-200">Pointing Domain</h3>
+                    <p class="text-[10px] text-slate-400 leading-tight">Arahkan domain ke IP VPS.</p>
                 </div>
-
-                <!-- Step 2 -->
-                <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl flex flex-col space-y-2">
-                    <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center text-xs">
-                        02
-                    </div>
-                    <h3 class="font-bold text-sm text-slate-200">Daftar Lisensi</h3>
-                    <p class="text-[11px] text-slate-400 leading-relaxed">Kirim IP VPS ke Admin WhatsApp.</p>
+                <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-xl flex flex-col space-y-1.5">
+                    <div class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center text-xs">02</div>
+                    <h3 class="font-bold text-xs text-slate-200">Daftar Lisensi</h3>
+                    <p class="text-[10px] text-slate-400 leading-tight">Kirim IP VPS ke Admin WA.</p>
                 </div>
-
-                <!-- Step 3 -->
-                <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl flex flex-col space-y-2">
-                    <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center text-xs">
-                        03
-                    </div>
-                    <h3 class="font-bold text-sm text-slate-200">Login SSH</h3>
-                    <p class="text-[11px] text-slate-400 leading-relaxed">Akses terminal root VPS Anda.</p>
+                <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-xl flex flex-col space-y-1.5">
+                    <div class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center text-xs">03</div>
+                    <h3 class="font-bold text-xs text-slate-200">Login SSH</h3>
+                    <p class="text-[10px] text-slate-400 leading-tight">Akses terminal root VPS.</p>
                 </div>
-
-                <!-- Step 4 -->
-                <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl flex flex-col space-y-2">
-                    <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center text-xs">
-                        04
-                    </div>
-                    <h3 class="font-bold text-sm text-slate-200">Jalankan Script</h3>
-                    <p class="text-[11px] text-slate-400 leading-relaxed">Tempel command dan ikuti setup.</p>
+                <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-xl flex flex-col space-y-1.5">
+                    <div class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center justify-center text-xs">04</div>
+                    <h3 class="font-bold text-xs text-slate-200">Jalankan Script</h3>
+                    <p class="text-[10px] text-slate-400 leading-tight">Tempel & ikuti setup.</p>
                 </div>
             </div>
 
-            <!-- Terminal Box -->
-            <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-4 sm:p-6 shadow-xl relative">
-                <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800/80">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
-                        <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
-                        <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
-                        <span class="text-[11px] text-slate-500 font-mono ml-1.5">bash - terminal</span>
+            <!-- Terminal Box (Diperkecil) -->
+            <div class="bg-slate-950 border border-slate-800/80 rounded-xl p-3 sm:p-4 shadow-xl relative">
+                <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800/80">
+                    <div class="flex items-center space-x-1.5">
+                        <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                        <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
+                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                        <span class="text-[10px] text-slate-500 font-mono ml-1">bash</span>
                     </div>
-                    <button onclick="copyScript()" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center space-x-1.5">
-                        <i id="copyIcon" class="fa-regular fa-copy"></i>
+                    <button onclick="copyScript()" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 text-[11px] font-semibold px-2.5 py-1 rounded-md transition flex items-center space-x-1">
+                        <i id="copyIcon" class="fa-regular fa-copy text-xs"></i>
                         <span id="copyText">Salin Script</span>
                     </button>
                 </div>
-                <pre id="scriptCode" class="text-xs font-mono text-cyan-300 overflow-x-auto whitespace-pre-wrap leading-relaxed">
+                <pre id="scriptCode" class="text-[10px] sm:text-xs font-mono text-cyan-300 overflow-x-auto whitespace-pre-wrap leading-tight">
 sysctl -w net.ipv6.conf.all.disable_ipv6=1 && \
 sysctl -w net.ipv6.conf.default.disable_ipv6=1 && \
 apt update --allow-releaseinfo-change && \
@@ -515,6 +500,7 @@ chmod +x mahbub && \
             </div>
         </div>
     </section>
+
 
     <!-- FAQ Section -->
     <section id="faq" class="py-16 bg-slate-900/30 border-t border-slate-800/60 scroll-mt-24">
