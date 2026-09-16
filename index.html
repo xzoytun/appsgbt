@@ -6,513 +6,766 @@
 <title>Zoy Tunneling — Sewa Autoscript Install VPS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-  :root{
-    /* Palette pulled straight from the terminal preview: near-black bg,
-       terminal green for active/positive state, amber-yellow border,
-       electric blue for the title bar, soft grey text */
-    --bg:#0B0F0C;
-    --bg-soft:#10160F;
-    --panel:#0E130F;
-    --panel-raised:#121810;
-    --line:#2A3B27;
-    --line-soft:#1B2419;
-    --green:#33F17A;
-    --green-dim:#1F7A45;
-    --green-tint:rgba(51,241,122,0.08);
-    --amber:#F0C93A;
-    --amber-dim:#8A7521;
-    --ink:#E7F2E9;
-    --ink-soft:#8FA491;
-    --ink-faint:#5C6E5E;
-    --serif:'Fraunces', serif;
-    --sans:'Inter', sans-serif;
-    --mono:'JetBrains Mono', monospace;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg);
-    color:var(--ink);
-    font-family:var(--sans);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
-  }
-  a{color:inherit;}
-  img{max-width:100%;display:block;}
-  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
-
-  /* HEADER */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(11,15,12,0.9);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line-soft);
-  }
-  .nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:16px 24px; max-width:920px; margin:0 auto;
-  }
-  .brand{
-    display:flex; align-items:center; gap:10px;
-    font-family:var(--mono); font-weight:700; font-size:17px; letter-spacing:0.01em;
-    color:var(--green);
-  }
-  .brand .mark{
-    width:28px; height:28px; border-radius:6px;
-    background:var(--green); color:var(--bg);
-    display:flex; align-items:center; justify-content:center;
-    font-family:var(--mono); font-weight:700; font-size:14px;
-  }
-  .nav a.cta-mini{
-    font-family:var(--mono); font-size:13px; font-weight:600;
-    background:var(--green); color:var(--bg);
-    padding:9px 16px; border-radius:6px; text-decoration:none;
-    transition:background .15s ease, transform .15s ease;
-  }
-  .nav a.cta-mini:hover{background:#4FFF95; transform:translateY(-1px);}
-
-  /* HERO */
-  .hero{padding:60px 0 44px; position:relative;}
-  .hero-top{display:flex; align-items:center; gap:8px; margin-bottom:20px;}
-  .badge{
-    font-family:var(--mono); font-size:12px; font-weight:600; color:var(--green);
-    background:var(--green-tint); border:1px solid var(--green-dim);
-    padding:6px 13px; border-radius:20px; letter-spacing:0.02em;
-  }
-  h1{
-    font-family:var(--serif); font-weight:600;
-    font-size:clamp(30px, 5.2vw, 46px);
-    line-height:1.14; letter-spacing:-0.01em;
-    max-width:16ch;
-    margin-bottom:18px;
-    color:var(--ink);
-  }
-  .hero p.lede{
-    font-size:16px; color:var(--ink-soft); max-width:54ch; margin-bottom:32px;
-  }
-  .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:40px;}
-  .btn-primary{
-    font-family:var(--sans); font-weight:600; font-size:14.5px;
-    background:var(--green); color:var(--bg); padding:13px 24px; border-radius:7px;
-    text-decoration:none; transition:background .15s ease, transform .15s ease;
-  }
-  .btn-primary:hover{background:#4FFF95; transform:translateY(-1px);}
-  .btn-secondary{
-    font-family:var(--sans); font-weight:600; font-size:14.5px;
-    background:transparent; color:var(--ink); padding:13px 24px; border-radius:7px;
-    text-decoration:none; border:1.5px solid var(--line);
-    transition:border-color .15s ease;
-  }
-  .btn-secondary:hover{border-color:var(--green);}
-
-  /* trust strip */
-  .trust-strip{
-    display:flex; flex-wrap:wrap; gap:10px 26px;
-    padding:20px 0; border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);
-  }
-  .trust-item{
-    display:flex; align-items:center; gap:9px;
-    font-size:13px; color:var(--ink-soft); font-weight:500;
-    font-family:var(--mono);
-  }
-  .trust-item .ico{color:var(--green); font-size:14px;}
-
-  /* SECTION helpers */
-  section{padding:60px 0;}
-  section:last-of-type{padding-bottom:44px;}
-  .section-head{margin-bottom:32px;}
-  .section-head .eyebrow{
-    font-family:var(--mono); font-size:12px; font-weight:700; color:var(--green);
-    text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; display:block;
-  }
-  .section-head h2{
-    font-family:var(--serif); font-size:clamp(22px,3.2vw,29px); font-weight:600;
-    letter-spacing:-0.01em; line-height:1.25; color:var(--ink);
-  }
-  .section-head p{color:var(--ink-soft); margin-top:10px; max-width:56ch; font-size:14.5px;}
-
-  .section-alt{background:var(--bg-soft); border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);}
-
-  /* PRICING cards */
-  .price-grid{display:grid; grid-template-columns:1fr; gap:14px;}
-  .price-card{
-    background:var(--panel); border:1px solid var(--line-soft); border-radius:12px;
-    padding:22px 22px; display:flex; align-items:center; justify-content:space-between; gap:18px;
-    position:relative;
-  }
-  .price-card.best{
-    border-color:var(--green); background:var(--green-tint);
-  }
-  .price-card .flag{
-    position:absolute; top:-11px; left:22px;
-    background:var(--green); color:var(--bg); font-size:10.5px; font-weight:700;
-    padding:4px 11px; border-radius:20px; letter-spacing:0.03em; font-family:var(--mono);
-  }
-  .price-card .left{display:flex; flex-direction:column; gap:6px;}
-  .price-card .duration{
-    font-family:var(--mono); font-size:13px; font-weight:600; color:var(--ink-soft);
-    text-transform:uppercase; letter-spacing:0.06em;
-  }
-  .price-card .feat{font-size:12.5px; color:var(--ink-faint);}
-  .price-card .right{text-align:right; flex-shrink:0;}
-  .price-card .amount{
-    font-family:var(--serif); font-size:26px; font-weight:600; color:var(--ink);
-    line-height:1.1; white-space:nowrap;
-  }
-  .price-card .amount sup{font-size:13px; font-weight:500; margin-right:2px; color:var(--green);}
-  .price-card .unit{font-size:11.5px; color:var(--ink-faint); font-weight:500; margin-top:2px;}
-  .price-note{
-    margin-top:16px; font-size:13px; color:var(--ink-soft); font-family:var(--mono);
-    border-left:2px solid var(--amber); padding:10px 16px; background:rgba(240,201,58,0.06);
-    border-radius:0 6px 6px 0;
+  :root {
+    --bg: #090d0a;
+    --bg-card: #0f1511;
+    --bg-card-hover: #141c16;
+    --border: #1e2920;
+    --border-bright: #2d4231;
+    
+    --accent: #22c55e;
+    --accent-glow: rgba(34, 197, 94, 0.12);
+    --accent-hover: #16a34a;
+    
+    --yellow: #eab308;
+    --yellow-dim: rgba(234, 179, 8, 0.1);
+    
+    --text-main: #f0fdf4;
+    --text-muted: #86efac;
+    --text-dim: #64748b;
+    
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-serif: 'Instrument Serif', serif;
+    --font-mono: 'JetBrains Mono', monospace;
   }
 
-  /* OS support */
-  .os-groups{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
-  .os-block{background:var(--panel); border:1px solid var(--line-soft); border-radius:12px; padding:18px 20px;}
-  .os-block-title{
-    font-family:var(--mono); font-size:13px; font-weight:700; color:var(--green);
-    margin-bottom:13px; text-transform:uppercase; letter-spacing:0.06em;
-  }
-  .os-list{display:flex; flex-direction:column; gap:9px;}
-  .os-list-item{
-    display:flex; align-items:center; justify-content:space-between;
-    font-size:13px; color:var(--ink); font-family:var(--mono);
-    padding-bottom:9px; border-bottom:1px solid var(--line-soft);
-  }
-  .os-list-item:last-child{border-bottom:none; padding-bottom:0;}
-  .os-list-item .check{
-    width:17px; height:17px; border-radius:50%; background:var(--green-tint); color:var(--green);
-    display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700;
-    flex-shrink:0;
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  
+  body {
+    background-color: var(--bg);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
-  /* preview image — framed to match its own terminal palette */
-  .preview-card{
-    border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--panel);
-  }
-  .preview-img{width:100%; display:block; background:#000;}
-  .preview-img-fallback{
-    aspect-ratio:16/9; background:var(--panel-raised);
-    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
-    color:var(--ink-faint); font-size:13px; text-align:center; padding:24px; font-family:var(--mono);
-  }
-  .preview-img-fallback .icon{font-size:28px; color:var(--green);}
-  .preview-caption{padding:16px 20px; font-size:13px; color:var(--ink-faint); border-top:1px solid var(--line-soft); font-family:var(--mono);}
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
 
-  /* steps */
-  .steps{display:flex; flex-direction:column; border:1px solid var(--line-soft); border-radius:12px; overflow:hidden; background:var(--panel);}
-  .step{display:flex; gap:18px; padding:22px 24px; border-bottom:1px solid var(--line-soft);}
-  .step:last-child{border-bottom:none;}
-  .step .n{
-    font-family:var(--mono); color:var(--green); font-weight:700; font-size:19px; min-width:30px;
-  }
-  .step .t{font-weight:600; margin-bottom:4px; font-size:15px; color:var(--ink);}
-  .step .d{color:var(--ink-soft); font-size:13.5px;}
-
-  /* code block — same near-black + green as the terminal screenshot */
-  .code-block{
-    background:#000; border:1px solid var(--line); border-radius:12px; overflow:hidden;
-    box-shadow:0 20px 44px rgba(0,0,0,0.5);
-  }
-  .code-block-bar{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:12px 18px; background:#0A0F0A; border-bottom:1px solid var(--line-soft);
-  }
-  .code-block-bar span{font-family:var(--mono); font-size:12px; color:var(--ink-faint);}
-  .copy-btn{
-    font-family:var(--sans); font-size:12px; font-weight:600;
-    background:var(--green-tint); color:var(--green); border:1px solid var(--green-dim);
-    padding:6px 13px; border-radius:6px; cursor:pointer;
-    transition:background .15s ease;
-  }
-  .copy-btn:hover{background:rgba(51,241,122,0.16);}
-  .copy-btn:focus-visible, .cta-mini:focus-visible, .wa-float:focus-visible, .btn-primary:focus-visible{outline:2px solid var(--green); outline-offset:2px;}
-  pre.code{
-    padding:20px; font-family:var(--mono); font-size:12px; line-height:1.85;
-    color:var(--green); overflow-x:auto; white-space:pre;
-  }
-  .note-box{
-    margin-top:14px; font-size:13px; color:var(--ink-soft); font-family:var(--mono);
-    border-left:2px solid var(--amber); padding:11px 16px; background:rgba(240,201,58,0.06);
-    border-radius:0 6px 6px 0;
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
   }
 
-  /* FAQ */
-  details{border-bottom:1px solid var(--line-soft); padding:18px 0;}
-  details summary{
-    cursor:pointer; font-weight:600; list-style:none; display:flex; justify-content:space-between; align-items:center;
-    font-size:14.5px; color:var(--ink);
-  }
-  details summary::-webkit-details-marker{display:none;}
-  details summary::after{
-    content:"+"; color:var(--green); font-size:19px; margin-left:12px; font-weight:400;
-  }
-  details[open] summary::after{content:"–";}
-  details p{color:var(--ink-soft); margin-top:11px; font-size:13.5px; max-width:60ch;}
-
-  /* contact */
-  .contact-card{
-    background:linear-gradient(135deg, var(--green-dim), #0F3D22);
-    border:1px solid var(--green-dim); border-radius:14px;
-    padding:32px; display:flex; align-items:center; justify-content:space-between; gap:22px; flex-wrap:wrap;
-    color:#fff;
-  }
-  .contact-card .who{font-size:12.5px; color:rgba(255,255,255,0.75); margin-bottom:6px; font-weight:600; font-family:var(--mono); text-transform:uppercase; letter-spacing:0.05em;}
-  .contact-card .num{font-family:var(--mono); font-size:22px; font-weight:700;}
-  .wa-btn{
-    font-family:var(--sans); font-weight:700; font-size:14px;
-    background:#fff; color:#0F3D22; padding:13px 22px; border-radius:8px;
-    text-decoration:none; white-space:nowrap;
-    transition:transform .15s ease;
-  }
-  .wa-btn:hover{transform:translateY(-1px);}
-
-  footer{
-    border-top:1px solid var(--line-soft); padding:24px 24px 60px;
-    font-size:12.5px; color:var(--ink-faint); text-align:center; font-family:var(--mono);
-    line-height:1.7; max-width:760px; margin:0 auto;
+  /* --- HEADER --- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(9, 13, 10, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
   }
 
-  @media (max-width:760px){
-    .price-grid{grid-template-columns:1fr;}
-    .os-groups{grid-template-columns:1fr;}
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
   }
-  @media (max-width:640px){
-    .contact-card{flex-direction:column; align-items:flex-start;}
-    .hero-actions{flex-direction:column;}
-    .btn-primary,.btn-secondary{text-align:center;}
-    pre.code{font-size:11px;}
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .brand-badge {
+    background: var(--accent-glow);
+    border: 1px solid var(--accent);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+  }
+
+  .btn-nav {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--accent);
+    color: #000;
+    padding: 9px 18px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-nav:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+  }
+
+  /* --- HERO SECTION --- */
+  .hero {
+    padding: 80px 0 60px;
+    position: relative;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid var(--border-bright);
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(42px, 6vw, 68px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+
+  .hero h1 span {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .hero p {
+    font-size: 17px;
+    color: #a3b899;
+    max-width: 580px;
+    margin-bottom: 36px;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #051308;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #16a34a;
+    transform: translateY(-2px);
+  }
+
+  /* TRUST BADGES */
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    border-top: 1px solid var(--border);
+    padding-top: 30px;
+  }
+
+  .trust-item {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: #8fa491;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .trust-item span { color: var(--accent); font-size: 16px; }
+
+  /* --- SECTIONS --- */
+  section { padding: 70px 0; }
+  
+  .section-header {
+    margin-bottom: 40px;
+  }
+
+  .section-header .sub {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .section-header h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(32px, 4vw, 42px);
+    font-weight: 400;
+    color: #fff;
+  }
+
+  .section-header p {
+    color: #8fa491;
+    font-size: 15px;
+    margin-top: 8px;
+  }
+
+  /* --- PRICING GRID --- */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .price-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all 0.25s ease;
+  }
+
+  .price-card:hover {
+    border-color: var(--border-bright);
+    background: var(--bg-card-hover);
+    transform: translateY(-4px);
+  }
+
+  .price-card.featured {
+    border-color: var(--accent);
+    background: linear-gradient(180deg, rgba(34,197,94,0.06) 0%, var(--bg-card) 100%);
+  }
+
+  .badge-popular {
+    position: absolute;
+    top: -12px;
+    right: 24px;
+    background: var(--accent);
+    color: #051308;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .price-duration {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+  }
+
+  .price-amount {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .price-amount span {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-right: 2px;
+  }
+
+  .price-desc {
+    font-size: 13.5px;
+    color: #8fa491;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .price-note {
+    margin-top: 20px;
+    background: var(--yellow-dim);
+    border-left: 3px solid var(--yellow);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: #fde047;
+  }
+
+  /* --- OS SUPPORT --- */
+  .os-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .os-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+
+  .os-box h3 {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .os-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .os-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    color: var(--text-main);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .os-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .os-item span { color: var(--accent); }
+
+  /* --- PREVIEW IMAGE --- */
+  .preview-wrapper {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .preview-img {
+    width: 100%;
+    display: block;
+    background: #000;
+  }
+
+  .preview-footer {
+    padding: 16px 20px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
+  }
+
+  /* --- STEPS & CODE --- */
+  .steps-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+
+  .step-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 24px;
+    border-radius: 14px;
+  }
+
+  .step-num {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .step-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: #fff;
+  }
+
+  .step-desc {
+    font-size: 13.5px;
+    color: #8fa491;
+  }
+
+  /* CODE BLOCK */
+  .code-box {
+    background: #040705;
+    border: 1px solid var(--border-bright);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 16px 32px rgba(0,0,0,0.4);
+  }
+
+  .code-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: #090e0b;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .code-bar span {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .copy-btn {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--accent-glow);
+    color: var(--accent);
+    border: 1px solid var(--border-bright);
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .copy-btn:hover { background: rgba(34,197,94,0.2); }
+
+  pre.code-content {
+    padding: 20px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: #4ade80;
+    overflow-x: auto;
+  }
+
+  /* --- FAQ --- */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  details {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 24px;
+    transition: border-color 0.2s;
+  }
+
+  details[open] { border-color: var(--border-bright); }
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+";
+    color: var(--accent);
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  details[open] summary::after { content: "–"; }
+
+  details p {
+    color: #8fa491;
+    font-size: 14px;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  /* --- CONTACT CTA --- */
+  .cta-banner {
+    background: linear-gradient(135deg, #143820 0%, #0c2014 100%);
+    border: 1px solid #235331;
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .cta-banner .label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .cta-banner .number {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .btn-whatsapp {
+    background: #fff;
+    color: #0f3d22;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    transition: transform 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-whatsapp:hover { transform: scale(1.03); }
+
+  /* --- FOOTER --- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 768px) {
+    .pricing-grid, .os-grid, .steps-container, .trust-grid {
+      grid-template-columns: 1fr;
+    }
+    .cta-banner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="nav">
-    <div class="brand"><span class="mark">Z</span>zoy@tunneling:~$</div>
-    <a class="cta-mini" href="#kontak">Hubungi admin</a>
+  <div class="container nav">
+    <div class="brand">
+      <span class="brand-badge">zoy@tun</span>
+      <span>Zoy Tunneling</span>
+    </div>
+    <a class="btn-nav" href="#kontak">Hubungi Admin</a>
   </div>
 </header>
 
-<main class="wrap">
+<main class="container">
 
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-top">
-      <span class="badge">● autoscript install VPS</span>
-    </div>
-    <h1>Sewa autoscript VPS, rapi dan siap pakai per IP.</h1>
-    <p class="lede">Zoy Tunneling menyediakan akses autoscript untuk setup VPS tunneling dalam sekali jalan. Mendukung Debian 10–13 dan Ubuntu 20, 22, 24, 25. Bayar per IP, bukan langganan yang ribet.</p>
-    <div class="hero-actions">
-      <a class="btn-primary" href="#harga">Lihat harga sewa</a>
+    <div class="hero-tag">● Autoscript Install VPS High-Performance</div>
+    <h1>Sewa autoscript VPS, <span>rapi &amp; siap pakai</span> per IP.</h1>
+    <p>Solusi setup VPS tunneling kilat sekali jalan. Sepenuhnya mendukung Debian 10–13 serta Ubuntu versi 20 hingga 25. Sistem sewa per IP transparan tanpa langganan rumit.</p>
+    
+    <div class="hero-btns">
+      <a class="btn-primary" href="#harga">Lihat Pilihan Harga</a>
     </div>
 
-    <div class="trust-strip">
-      <div class="trust-item"><span class="ico">✓</span> Support 8 versi OS</div>
-      <div class="trust-item"><span class="ico">✓</span> Aktivasi cepat via admin</div>
-      <div class="trust-item"><span class="ico">✓</span> Harga per IP, transparan</div>
+    <div class="trust-grid">
+      <div class="trust-item"><span>✓</span> Support 8 Versi OS</div>
+      <div class="trust-item"><span>✓</span> Aktivasi Kilat via Admin</div>
+      <div class="trust-item"><span>✓</span> Tanpa Biaya Tersembunyi</div>
     </div>
   </section>
 
+  <!-- PRICING -->
   <section id="harga">
-    <div class="section-head">
-      <span class="eyebrow">Harga sewa</span>
-      <h2>Satu harga jelas, per IP</h2>
-      <p>Pilih durasi sewa yang sesuai. Makin panjang durasi, makin hemat biaya per bulannya.</p>
+    <div class="section-header">
+      <span class="sub">Investasi Terjangkau</span>
+      <h2>Pilihan Durasi Sewa Per IP</h2>
+      <p>Makin panjang durasi yang Anda pilih, makin hemat anggaran operasional Anda.</p>
     </div>
 
-    <div class="price-grid">
+    <div class="pricing-grid">
       <div class="price-card">
-        <div class="left">
-          <div class="duration">1 Bulan</div>
-          <div class="feat">Akses autoscript penuh · aktivasi via admin</div>
-        </div>
-        <div class="right">
-          <div class="amount"><sup>Rp</sup>15.000</div>
-          <div class="unit">per IP VPS</div>
-        </div>
+        <div class="price-duration">1 Bulan</div>
+        <div class="price-amount"><span>Rp</span>15k</div>
+        <div class="price-desc">Akses autoscript penuh untuk 1 IP VPS aktif.</div>
       </div>
+      
       <div class="price-card">
-        <div class="left">
-          <div class="duration">2 Bulan</div>
-          <div class="feat">Akses autoscript penuh · aktivasi via admin</div>
-        </div>
-        <div class="right">
-          <div class="amount"><sup>Rp</sup>25.000</div>
-          <div class="unit">per IP VPS</div>
-        </div>
+        <div class="price-duration">2 Bulan</div>
+        <div class="price-amount"><span>Rp</span>25k</div>
+        <div class="price-desc">Masa aktif lebih panjang, efisiensi optimal.</div>
       </div>
-      <div class="price-card best">
-        <div class="flag">Paling hemat</div>
-        <div class="left">
-          <div class="duration">3 Bulan</div>
-          <div class="feat">Akses autoscript penuh · harga/bulan paling rendah</div>
-        </div>
-        <div class="right">
-          <div class="amount"><sup>Rp</sup>35.000</div>
-          <div class="unit">per IP VPS</div>
-        </div>
-      </div>
-    </div>
-    <div class="price-note">Harga berlaku per 1 alamat IP VPS. Untuk sewa banyak IP sekaligus, hubungi admin untuk penyesuaian harga.</div>
-  </section>
 
-  <section class="section-alt">
-    <div class="section-head">
-      <span class="eyebrow">Kompatibilitas</span>
-      <h2>OS yang didukung</h2>
-      <p>Autoscript sudah diuji jalan mulus di distro berikut.</p>
+      <div class="price-card featured">
+        <div class="badge-popular">PALING HEMAT</div>
+        <div class="price-duration">3 Bulan</div>
+        <div class="price-amount"><span>Rp</span>35k</div>
+        <div class="price-desc">Harga per bulan paling rendah, performa stabil maksimal.</div>
+      </div>
     </div>
-    <div class="os-groups">
-      <div class="os-block">
-        <div class="os-block-title">Debian</div>
-        <div class="os-list">
-          <div class="os-list-item">Debian 10 <span class="check">✓</span></div>
-          <div class="os-list-item">Debian 11 <span class="check">✓</span></div>
-          <div class="os-list-item">Debian 12 <span class="check">✓</span></div>
-          <div class="os-list-item">Debian 13 <span class="check">✓</span></div>
-        </div>
-      </div>
-      <div class="os-block">
-        <div class="os-block-title">Ubuntu</div>
-        <div class="os-list">
-          <div class="os-list-item">Ubuntu 20 <span class="check">✓</span></div>
-          <div class="os-list-item">Ubuntu 22 <span class="check">✓</span></div>
-          <div class="os-list-item">Ubuntu 24 <span class="check">✓</span></div>
-          <div class="os-list-item">Ubuntu 25 <span class="check">✓</span></div>
-        </div>
-      </div>
+
+    <div class="price-note">
+      * Tarif dihitung per 1 alamat IP VPS. Untuk pembelian paketan banyak IP, silakan negosiasi langsung dengan admin.
     </div>
   </section>
 
+  <!-- OS SUPPORT -->
   <section>
-    <div class="section-head">
-      <span class="eyebrow">Preview</span>
-      <h2>Tampilan autoscript</h2>
-      <p>Pratinjau menu instalasi setelah script dijalankan di VPS.</p>
+    <div class="section-header">
+      <span class="sub">Kompatibilitas Luas</span>
+      <h2>Distribusi Linux Didukung</h2>
+      <p>Script telah diuji stabil dan optimal di berbagai versi sistem operasi populer.</p>
     </div>
-    <div class="preview-card">
-      <img
+
+    <div class="os-grid">
+      <div class="os-box">
+        <h3>Debian Series</h3>
+        <div class="os-list">
+          <div class="os-item">Debian 10 <span>✓</span></div>
+          <div class="os-item">Debian 11 <span>✓</span></div>
+          <div class="os-item">Debian 12 <span>✓</span></div>
+          <div class="os-item">Debian 13 <span>✓</span></div>
+        </div>
+      </div>
+
+      <div class="os-box">
+        <h3>Ubuntu Series</h3>
+        <div class="os-list">
+          <div class="os-item">Ubuntu 20.04 <span>✓</span></div>
+          <div class="os-item">Ubuntu 22.04 <span>✓</span></div>
+          <div class="os-item">Ubuntu 24.04 <span>✓</span></div>
+          <div class="os-item">Ubuntu 25.04 <span>✓</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREVIEW -->
+  <section>
+    <div class="section-header">
+      <span class="sub">Antarmuka</span>
+      <h2>Pratinjau Tampilan Script</h2>
+      <p>Menu interaktif yang rapi dan bersih langsung dari terminal Anda.</p>
+    </div>
+
+    <div class="preview-wrapper">
+      <img 
+        src="https://raw.githubusercontent.com/joytun21/joy/main/image/onta.jpg" 
+        alt="Preview Autoscript Zoy Tunneling"
         class="preview-img"
-        src="https://raw.githubusercontent.com/joytun21/joy/main/image/onta.jpg"
-        alt="Tampilan menu autoscript Zoy Tunneling"
-        onerror="this.style.display='none'; document.getElementById('previewFallback').style.display='flex';"
+        onerror="this.style.display='none'"
       >
-      <div class="preview-img-fallback" id="previewFallback" style="display:none;">
-        <div class="icon">▣</div>
-        <div>Gambar tidak berhasil dimuat dari sumbernya. Coba muat ulang halaman, atau pastikan gambar bersifat publik.</div>
+      <div class="preview-footer">
+        Zoy Tunneling Menu Interface — Otomatis tampil setelah instalasi selesai dijalankan.
       </div>
-      <div class="preview-caption">Menu instalasi Zoy Tunneling — tampil otomatis setelah proses instalasi selesai.</div>
     </div>
   </section>
 
-  <section class="section-alt">
-    <div class="section-head">
-      <span class="eyebrow">Cara pakai</span>
-      <h2>3 langkah install</h2>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <div class="n">01</div>
-        <div>
-          <div class="t">Hubungi admin &amp; lakukan pembayaran</div>
-          <div class="d">Pilih durasi sewa (1/2/3 bulan), transfer sesuai harga, admin akan aktifkan akses IP kamu.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="n">02</div>
-        <div>
-          <div class="t">Login ke VPS via SSH</div>
-          <div class="d">Masuk sebagai root ke VPS Debian atau Ubuntu yang sudah didukung.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="n">03</div>
-        <div>
-          <div class="t">Jalankan command install</div>
-          <div class="d">Copy paste command di bawah ini, tunggu proses selesai, dan VPS siap dipakai.</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:24px;">
-      <div class="code-block">
-        <div class="code-block-bar">
-          <span>install.sh</span>
-          <button class="copy-btn" id="copyBtn">Salin</button>
-        </div>
-        <pre class="code" id="installCode">sysctl -w net.ipv6.conf.all.disable_ipv6=1 &amp;&amp; \
-sysctl -w net.ipv6.conf.default.disable_ipv6=1 &amp;&amp; \
-apt update --allow-releaseinfo-change &amp;&amp; \
-apt upgrade -y &amp;&amp; \
-apt install -y curl wget unzip sudo gnupg lsb-release build-essential libcap-ng-dev libssl-dev libffi-dev python3 python3-pip &amp;&amp; \
-curl -fsSL -O https://raw.githubusercontent.com/joytun21/schaya/main/mahbub &amp;&amp; \
-chmod +x mahbub &amp;&amp; \
-./mahbub</pre>
-      </div>
-      <div class="note-box">Jalankan sebagai root pada VPS yang masih bersih (fresh install) untuk hasil terbaik. Pastikan akses IP kamu sudah aktif dari admin sebelum menjalankan script.</div>
-    </div>
-  </section>
-
+  <!-- STEPS & INSTALL -->
   <section>
-    <div class="section-head">
-      <span class="eyebrow">FAQ</span>
-      <h2>Pertanyaan umum</h2>
+    <div class="section-header">
+      <span class="sub">Panduan Cepat</span>
+      <h2>3 Langkah Mudah Memulai</h2>
     </div>
 
-    <details open>
-      <summary>Apakah harga berlaku untuk 1 IP atau bisa dipakai banyak server?</summary>
-      <p>Harga di atas berlaku per 1 IP VPS untuk masa aktif sesuai durasi yang dipilih. Kalau butuh banyak IP sekaligus, hubungi admin untuk harga paket.</p>
-    </details>
-    <details>
-      <summary>Bagaimana kalau OS VPS saya tidak ada di daftar?</summary>
-      <p>Autoscript ini dioptimalkan untuk Debian 10–13 dan Ubuntu 20/22/24/25. Untuk versi di luar itu, tanyakan dulu ke admin sebelum instalasi.</p>
-    </details>
-    <details>
-      <summary>Apakah ada garansi kalau script gagal jalan?</summary>
-      <p>Kendala teknis saat instalasi bisa langsung dikonsultasikan ke admin melalui WhatsApp untuk dibantu troubleshoot.</p>
-    </details>
-    <details>
-      <summary>Bagaimana cara memperpanjang masa aktif IP?</summary>
-      <p>Hubungi admin sebelum masa aktif habis, sebutkan IP yang ingin diperpanjang dan pilih durasi baru.</p>
-    </details>
+    <div class="steps-container">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">Sewa &amp; Bayar</div>
+        <div class="step-desc">Hubungi admin, pilih paket durasi, lakukan pembayaran dan daftarkan IP VPS Anda.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">Akses SSH</div>
+        <div class="step-desc">Masuk ke server VPS bersih (fresh install) milik Anda menggunakan akses root.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">Eksekusi Command</div>
+        <div class="step-desc">Tempel script instalasi di bawah ini dan biarkan sistem merampungkan konfigurasi.</div>
+      </div>
+    </div>
+
+    <div class="code-box">
+      <div class="code-bar">
+        <span>install.sh — Terminal Execution</span>
+        <button class="copy-btn" id="copyBtn">Salin Script</button>
+      </div>
+      <pre class="code-content" id="installCode">sysctl -w net.ipv6.conf.all.disable_ipv6=1 && \
+sysctl -w net.ipv6.conf.default.disable_ipv6=1 && \
+apt update --allow-releaseinfo-change && \
+apt upgrade -y && \
+apt install -y curl wget unzip sudo gnupg lsb-release build-essential libcap-ng-dev libssl-dev libffi-dev python3 python3-pip && \
+curl -fsSL -O https://raw.githubusercontent.com/joytun21/schaya/main/mahbub && \
+chmod +x mahbub && \
+./mahbub</pre>
+    </div>
   </section>
 
-  <section id="kontak">
-    <div class="section-head">
-      <span class="eyebrow">Kontak</span>
-      <h2>Hubungi admin</h2>
-      <p>Untuk pemesanan, aktivasi IP, atau pertanyaan seputar autoscript.</p>
+  <!-- FAQ -->
+  <section>
+    <div class="section-header">
+      <span class="sub">Informasi Tambahan</span>
+      <h2>Pertanyaan Umum (FAQ)</h2>
     </div>
-    <div class="contact-card">
+
+    <div class="faq-list">
+      <details open>
+        <summary>Apakah masa aktif berlaku untuk multi-server?</summary>
+        <p>Satu harga paket berlaku untuk 1 alamat IP VPS spesifik. Jika Anda ingin mengaktifkan di server berbeda, diperlukan pendaftaran IP baru.</p>
+      </details>
+      <details>
+        <summary>Bagaimana jika OS VPS saya berbeda dari daftar?</summary>
+        <p>Autoscript ini sudah dirancang khusus untuk kompatibilitas optimal di Debian dan Ubuntu versi tersebut. Konsultasikan terlebih dahulu jika memakai OS lain.</p>
+      </details>
+      <details>
+        <summary>Apakah ada bantuan jika proses instalasi gagal?</summary>
+        <p>Tentu, Anda bisa langsung menghubungi admin via WhatsApp untuk mendapatkan bantuan penanganan masalah teknis (*troubleshooting*).</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section id="kontak">
+    <div class="cta-banner">
       <div>
-        <div class="who">Admin Zoy Tunneling</div>
-        <div class="num">0838-7714-0463</div>
+        <div class="label">Butuh Bantuan &amp; Pemesanan?</div>
+        <div class="number">0838-7714-0463</div>
       </div>
-      <a class="wa-btn" href="https://wa.me/6283877140463" target="_blank" rel="noopener">Chat via WhatsApp</a>
+      <a class="btn-whatsapp" href="https://wa.me/6283877140463" target="_blank" rel="noopener">Chat WhatsApp Admin</a>
     </div>
   </section>
 
 </main>
 
 <footer>
-  Zoy Tunneling — sewa autoscript install VPS · dibuat untuk kebutuhan operasional, bukan disertai jaminan hukum atau layanan pihak ketiga
+  Zoy Tunneling — Sewa Autoscript Install VPS &bull; Dibangun untuk kemudahan operasional
 </footer>
 
 <script>
   document.getElementById('copyBtn').addEventListener('click', function(){
-    const raw = document.getElementById('installCode').innerText;
-    navigator.clipboard.writeText(raw).then(()=>{
+    const text = document.getElementById('installCode').innerText;
+    navigator.clipboard.writeText(text).then(() => {
       const btn = document.getElementById('copyBtn');
-      const old = btn.textContent;
-      btn.textContent = 'Tersalin!';
-      setTimeout(()=>{btn.textContent = old;}, 1600);
+      const oldText = btn.textContent;
+      btn.textContent = 'Berhasil Disalin!';
+      setTimeout(() => { btn.textContent = oldText; }, 2000);
     });
   });
 </script>
